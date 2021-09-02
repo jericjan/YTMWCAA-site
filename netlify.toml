@@ -1,5 +1,5 @@
 [[headers]]
-for = "/yagoo butlerr.png"
+for = "/yagoo%20butlerr.png"
 [headers.values]
 cache-control = "max-age=2592000"
 [[headers]]
