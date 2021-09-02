@@ -1,4 +1,4 @@
 # YTMWCAA-site
-World's firsrt ever YT To MP3 With Croppable Album Art™. 
+World's first ever YT To MP3 With Croppable Album Art™. 
 
 Server: https://github.com/jericjan/YTMWCAA-server
