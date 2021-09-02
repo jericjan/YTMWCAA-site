@@ -2,67 +2,61 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-<link rel="stylesheet" href="croppie.css">
+<meta charset="utf-8" />
+<link rel="stylesheet" href="croppie.css" />
 <script src="croppie.js"></script>
 
-<link href='https://fonts.googleapis.com/css?family=Lexend Deca&display=swap' rel='stylesheet'>
-<link rel="preconnect" href="https://fonts.gstatic.com/">
+<link href="https://fonts.googleapis.com/css?family=Lexend Deca&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.gstatic.com/" />
 
-
- <!-- TO-DO LIST -->
- <!-- zoom tip -->
- <!-- log for the magic part -->
+<!-- TO-DO LIST -->
+<!-- zoom tip -->
+<!-- log for the magic part -->
 <!--  contact -->
 <!-- test2 -->
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
 
- <!-- Primary Meta Tags -->
+<!-- Primary Meta Tags -->
 <title>YT To MP3 With Croppable Album Art™</title>
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<meta name="title" content="YT To MP3 With Croppable Album Art™">
-<meta name="description" content="poggers">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="title" content="YT To MP3 With Croppable Album Art™" />
+<meta name="description" content="poggers" />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/">
-<meta property="og:title" content="YT To MP3 With Croppable Album Art™">
-<meta property="og:description" content="poggers">
-<meta property="og:image" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/yagoo%20butlerr.png">
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/" />
+<meta property="og:title" content="YT To MP3 With Croppable Album Art™" />
+<meta property="og:description" content="poggers" />
+<meta property="og:image" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/yagoo%20butlerr.png" />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/">
-<meta property="twitter:title" content="YT To MP3 With Croppable Album Art™">
-<meta property="twitter:description" content="poggers">
-<meta property="twitter:image" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/yagoo%20butlerr.png">
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/" />
+<meta property="twitter:title" content="YT To MP3 With Croppable Album Art™" />
+<meta property="twitter:description" content="poggers" />
+<meta property="twitter:image" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/yagoo%20butlerr.png" />
 <style>
 div {
-    text-align: center;
+	text-align: center;
 }
-
 h3 {
-    margin-bottom: 0;
-
-    color: rgb(219, 218, 213);
+	margin-bottom: 0;
+	color: rgb(219, 218, 213);
 }
-
-body{ background-color: RGB(36, 37, 42); }
-
+body {
+	background-color: RGB(36, 37, 42);
+}
 div#status {
-
-    color: white;
+	color: white;
 }
-
 textarea {
-font-weight: bold;
-    background-color: rgb(219, 218, 213);
-    color: rgb(36, 37, 42);
+	font-weight: bold;
+	background-color: rgb(219, 218, 213);
+	color: rgb(36, 37, 42);
 }
 </style>
 <link rel="stylesheet" href="style.css">
@@ -70,467 +64,559 @@ font-weight: bold;
 </head>
 
 <body>
-<script src='bundle.js'></script>
+<script src="bundle.js"></script>
 <div id="page">
-<h3 id='faq' class="btn-open js-modal-open" data-modal-id="modal-id-a" >FAQ</h3>
-<h3 id='about' class="btn-open js-modal-open" data-modal-id="modal-id-b">CREDITS</h3>
-<h3 id='uptime'>SERVER STATUS:</h3>
-<h3 id='uptime2'>CHECKING...</h3>
-
-
+  <h3 id="faq" class="btn-open js-modal-open" data-modal-id="modal-id-a">FAQ</h3>
+  <h3 id="about" class="btn-open js-modal-open" data-modal-id="modal-id-b">CREDITS</h3>
+  <h3 id="uptime">SERVER STATUS:</h3>
+  <h3 id="uptime2">CHECKING...</h3>
 </div>
 
 <div id="modal">
+  <div class="modal-wrap js-modal" id="modal-id-a">
+    <div class="modal-inner size-vertical">
+      <div class="modal-head">
+        <h1>FAQ</h1>
+        <button class="btn-close js-modal-close">CLOSE</button>
+      </div>
+      <div class="modal-body">
+        <h2>What is this?</h2>
+        <p>This is <b>Kur0's YT To MP3 With Croppable Album Art™</b>. It's basically what the title says. You give it a link, adjust the cropped album art and the tags, and then press download. Simple as that.</p>
+        <p><b>PRESS "RESET" WHEN YOU WANT TO DOWNLOAD A DIFFERENT VIDEO</b></p>
+        <h2>What happens when I press "Download"?</h2>
+        <p>
+          Well, first it uploads the video's URL, cropped album art, and tags to a server I'm running. Then the server downloads the video's Opus audio using
+          <a href="https://youtube-dl.org/" target="_blank">youtube-dl</a> and converts it to V0 VBR MP3 using <a href="https://www.ffmpeg.org/" target="_blank">ffmpeg</a>. The album art and tags are then added to the MP3 using <a href="https://mutagen.readthedocs.io/en/latest/" target="_blank">mutagen</a>. Then the server sends it back to the user.
+        </p>
+        <h2>How are you running the server?</h2>
+        <p>
+          I know it's inefficient but the server is running on
+          <a href="https://replit.com/" target="_blank">replit.com</a>. I'm using <a href="https://www.python.org/" target="_blank">Python</a> to code it and the <a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank">Flask</a> module allows me to run the server.
+        </p>
+        <h2>Why does it take so long for it to "do magic"?</h2>
+        <p>(See previous question) It's cause I'm not hosting it myself.</p>
+        <h2>Can I see your code? 👀</h2>
+        <p>uh, sure. it's god awful code so be warned.<br /><a href="https://github.com/jericjan/YTMWCAA-server" target="_blank">the server</a><br /><a href="https://github.com/jericjan/YTMWCAA-site" target="_blank">the site</a><br /><small>(should they be separated? i have no idea how to combine them)</small></p>
+        <h2>Where can I contact you?</h2>
+        <p>Discord: <a href="https://discords.com/bio/p/jamsandwich47" target="_blank">Kur0#5384</a><br />Twitter: <a href="https://twitter.com/CantilJan" target="_blank">CantilJan</a></p>
+      </div>
+    </div>
+  </div>
 
+  <div class="modal-wrap js-modal" id="modal-id-b">
+    <div class="modal-inner size-vertical">
+      <div class="modal-head">
+        <h2>CREDITS</h2>
+        <button class="btn-close js-modal-close">CLOSE</button>
+      </div>
+      <div class="modal-body">
+        <p><a href="https://foliotek.github.io/Croppie/" target="_blank">croppie</a> - Lets me crop the thumbnail</p>
+        <p><a href="https://codepen.io/hnjungElis/pen/ZEyzPbe" target="_blank">jquery Multi Modal Control</a> - These pop up windows</p>
+        <p><a href="https://codepen.io/nourabusoud/pen/ypZzMM" target="_blank">Bubbly Button</a> - the buttons</p>
+        <p><a href="https://codepen.io/evawythien/pen/jegRxN" target="_blank">Progress bar animation</a> - the progress bar at the bottom</p>
+        <p><a href="https://youtube-dl.org/" target="_blank">youtube-dl</a> - For downloading youtube videos</p>
+        <p><a href="https://www.ffmpeg.org/" target="_blank">ffmpeg</a> - for converting files</p>
+        <p><a href="https://mutagen.readthedocs.io/en/latest/" target="_blank">mutagen</a> - for adding tags to audio files</p>
 
-
-
-	<div class="modal-wrap js-modal" id="modal-id-a">
-		<div class="modal-inner size-vertical">
-			<div class="modal-head">
-				<h1>FAQ</h1>
-				<button class="btn-close js-modal-close">CLOSE</button>
-			</div>
-			<div class="modal-body">
-				<h2>What is this?</h2>
-				<p>This is <b>Kur0's YT To MP3 With Croppable Album Art™</b>. It's basically what the title says. You give it a link, adjust the cropped album art and the tags, and then press download. Simple as that.</p>
-				<p><b>PRESS "RESET" WHEN YOU WANT TO DOWNLOAD A DIFFERENT VIDEO</b></p>
-				<h2>What happens when I press "Download"?</h2>
-				<p>Well, first it uploads the video's URL, cropped album art, and tags to a server I'm running. Then the server downloads the video's Opus audio using <a href='https://youtube-dl.org/' target="_blank">youtube-dl</a> and converts it to V0 VBR MP3 using <a href='https://www.ffmpeg.org/' target="_blank">ffmpeg</a>. The album art and tags are then added to the MP3 using <a href='https://mutagen.readthedocs.io/en/latest/' target="_blank">mutagen</a>. Then the server sends it back to the user.</p>
-				<h2>How are you running the server?</h2>
-				<p>I know it's inefficient but the server is running on <a href='https://replit.com/' target='_blank'>replit.com</a>. I'm using <a href='https://www.python.org/' target='_blank'>Python</a> to code it and the <a href='https://flask.palletsprojects.com/en/2.0.x/' target='_blank'>Flask</a> module allows me to run the server.
-				<h2>Why does it take so long for it to "do magic"?</h2>
-				<p>(See previous question) It's cause I'm not hosting it myself.</p>
-				<h2>Can I see your code? 👀</h2>
-				<p>uh, sure. it's god awful code so be warned.<br><a href='https://github.com/jericjan/YTMWCAA-server' target='_blank'>the server</a><br><a href='https://github.com/jericjan/YTMWCAA-site' target='_blank'>the site</a><br><small>(should they be separated? i have no idea how to combine them)</small> </p>
-				<h2>Where can I contact you?</h2>
-				<p>Discord: <a href='https://discords.com/bio/p/jamsandwich47' target='_blank'>Kur0#5384</a><br>Twitter: <a href='https://twitter.com/CantilJan' target='_blank'>CantilJan</a></p>
-
-			</div>
-		</div>
-	</div>
-	
-	<div class="modal-wrap js-modal" id="modal-id-b">
-		<div class="modal-inner size-vertical">
-			<div class="modal-head">
-				<h2>CREDITS</h2>
-				<button class="btn-close js-modal-close">CLOSE</button>
-			</div>
-			<div class="modal-body">
-				<p><a href='https://foliotek.github.io/Croppie/' target='_blank'>croppie</a> - Lets me crop the thumbnail</p>
-				<p><a href='https://codepen.io/hnjungElis/pen/ZEyzPbe' target='_blank'>jquery Multi Modal Control</a> - These pop up windows</p>
-				<p><a href='https://codepen.io/nourabusoud/pen/ypZzMM' target='_blank'>Bubbly Button</a> - the buttons</p>
-				<p><a href='https://codepen.io/evawythien/pen/jegRxN' target='_blank'>Progress bar animation</a> - the progress bar at the bottom</p>
-				<p><a href='https://youtube-dl.org/' target="_blank">youtube-dl</a> - For downloading youtube videos</p>
-				<p><a href='https://www.ffmpeg.org/' target="_blank">ffmpeg</a> - for converting files</p>
-				<p><a href='https://mutagen.readthedocs.io/en/latest/' target="_blank">mutagen</a> - for adding tags to audio files</p>
-				
-<!-- 				<p><a href='' target='_blank'>
+        <!-- 				<p><a href='' target='_blank'>
 				<p><a href='' target='_blank'>
 				<p><a href='' target='_blank'>
 				<p><a href='' target='_blank'> -->
-			</div>
-		</div>
-	</div>
-	
+      </div>
+    </div>
+  </div>
 </div>
 
-
-
 <script>
-
 function componentToHex(c) {
-  var hex = c.toString(16);
-  return hex.length == 1 ? "0" + hex : hex;
+  var hex = c.toString(16)
+  return hex.length == 1 ? "0" + hex : hex
 }
 
 function rgbToHex(r, g, b) {
-  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
 }
 
 function invertColor(hex) {
-    if (hex.indexOf('#') === 0) {
-        hex = hex.slice(1);
-    }
-    // convert 3-digit hex to 6-digits.
-    if (hex.length === 3) {
-        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-    }
-    if (hex.length !== 6) {
-        throw new Error('Invalid HEX color.');
-    }
-    // invert color components
-    var r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
-        g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
-        b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16);
-    // pad each with zeros and return
-    return '#' + padZero(r) + padZero(g) + padZero(b);
+  if (hex.indexOf("#") === 0) {
+    hex = hex.slice(1)
+  }
+  // convert 3-digit hex to 6-digits.
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]
+  }
+  if (hex.length !== 6) {
+    throw new Error("Invalid HEX color.")
+  }
+  // invert color components
+  var r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
+    g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
+    b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16)
+  // pad each with zeros and return
+  return "#" + padZero(r) + padZero(g) + padZero(b)
 }
 
 function padZero(str, len) {
-    len = len || 2;
-    var zeros = new Array(len).join('0');
-    return (zeros + str).slice(-len);
+  len = len || 2
+  var zeros = new Array(len).join("0")
+  return (zeros + str).slice(-len)
 }
 
-function set_image(){
-
-	var el = document.getElementById('first');
-	var resize = new Croppie(el, {
-		viewport: { width: 200, height: 200 },
-		boundary: { width: 600, height: 600 },
-		showZoomer: true,
-		enableResize: false,
-		enableOrientation: true,
-		mouseWheelZoom: 'ctrl',
-		useCORS:true
-	});
-	resize.bind({
-		url: el,
-	});
-	window.resize = resize
+function set_image() {
+  var el = document.getElementById("first")
+  var resize = new Croppie(el, {
+    viewport: { width: 200, height: 200 },
+    boundary: { width: 600, height: 600 },
+    showZoomer: true,
+    enableResize: false,
+    enableOrientation: true,
+    mouseWheelZoom: "ctrl",
+    useCORS: true
+  })
+  resize.bind({
+    url: el
+  })
+  window.resize = resize
 }
 
-function LinkGet(val){
+function LinkGet(val) {
+  const colorThief = new ColorThief()
+  const img = document.querySelector("#first")
 
-    const colorThief = new ColorThief();
-    const img = document.querySelector('#first');
+  var array1 = val.value.split("\n")[0]
+  if (array1.startsWith("https://youtu.be/")) {
+    var idd = array1.split("?")[0].split("/")[
+      array1.split("?")[0].split("/").length - 1
+    ]
+    window.url = array1.split("?")[0]
+  } else if (array1.startsWith("https://www.youtube.com/")) {
+    var idd = array1.split("&")[0].split("=")[1]
+    window.url = array1.split("&")[0]
+  } else {
+    alert("Not a YouTube URL")
+  }
 
+  //const http = new XMLHttpRequest()
+  //http.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=YOUR_API_KEY_HERE")
+  //http.send()
+  //console.log(JSON.parse(http.response))
 
+  fetch(
+    "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" +
+      idd +
+      "&key=YOUR_API_KEY_HERE"
+  )
+    .then(response => response.json())
+    .then(json => {
+      console.log("parsed json", json) // access json.body here
+      var thumbnail_url = json.items[0].snippet.thumbnails
+      if (thumbnail_url.maxres !== undefined) {
+        var final_url = thumbnail_url.maxres.url
+        console.log(final_url)
+      } else if (thumbnail_url.standard !== undefined) {
+        var final_url = thumbnail_url.standard.url
+        console.log(final_url)
+      } else if (thumbnail_url.high !== undefined) {
+        var final_url = thumbnail_url.high.url
+        console.log(final_url)
+      } else if (thumbnail_url.medium !== undefined) {
+        var final_url = thumbnail_url.medium.url
+        console.log(final_url)
+      } else if (thumbnail_url.default !== undefined) {
+        var final_url = thumbnail_url.default.url
+        console.log(final_url)
+      }
+      var pic = document.getElementById("first")
+      pic.crossOrigin = "Anonymous"
+      pic.src =
+        "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url
+      set_image()
+      window.title = json.items[0].snippet.title
+      window.author = json.items[0].snippet.channelTitle
 
-	var array1 = val.value.split("\n")[0]
-	if (array1.startsWith('https://youtu.be/')){
-		var idd = array1.split('?')[0].split('/')[array1.split('?')[0].split('/').length-1]
-		window.url = array1.split('?')[0]
-	}else if (array1.startsWith('https://www.youtube.com/')){
-		var idd = array1.split('&')[0].split('=')[1]
-		window.url = array1.split('&')[0]
-	}else{
-		alert("Not a YouTube URL");
-	}
+      // Make sure image is finished loading
+      if (img.complete) {
+        console.log(colorThief.getColor(img))
+        var color = colorThief.getColor(img)
 
-	
-	
+        $("body").animate(
+          {
+            backgroundColor:
+              "RGB(" + color[0] + "," + color[1] + "," + color[2] + ")"
+          },
+          { duration: 1000, queue: false }
+        )
+        $("textarea").animate(
+          {
+            backgroundColor: invertColor(rgbToHex(color[0], color[1], color[2]))
+          },
+          { duration: 1000, queue: false }
+        )
+        $("textarea").animate(
+          { color: "RGB(" + color[0] + "," + color[1] + "," + color[2] + ")" },
+          { duration: 1000, queue: false }
+        )
+        $("h3").animate(
+          { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
+          { duration: 1000, queue: false }
+        )
+        $("div#status,div#log,").animate(
+          { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
+          { duration: 1000, queue: false }
+        )
+      } else {
+        img.addEventListener("load", function () {
+          console.log(colorThief.getColor(img))
+          var color = colorThief.getColor(img)
+          $("body").animate(
+            {
+              backgroundColor:
+                "RGB(" + color[0] + "," + color[1] + "," + color[2] + ")"
+            },
+            { duration: 1000, queue: false }
+          )
+          $("textarea").animate(
+            {
+              backgroundColor: invertColor(
+                rgbToHex(color[0], color[1], color[2])
+              )
+            },
+            { duration: 1000, queue: false }
+          )
+          $("textarea").animate(
+            {
+              color: "RGB(" + color[0] + "," + color[1] + "," + color[2] + ")"
+            },
+            { duration: 1000, queue: false }
+          )
+          $("h3").animate(
+            { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
+            { duration: 1000, queue: false }
+          )
+          $("div#status,div#log").animate(
+            { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
+            { duration: 1000, queue: false }
+          )
+        })
+      }
 
-	//const http = new XMLHttpRequest()
-	//http.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=YOUR_API_KEY_HERE")
-	//http.send()
-	//console.log(JSON.parse(http.response))
-	
-	fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=YOUR_API_KEY_HERE")
-	  .then(response => response.json())
-	  .then(json => {
-		console.log('parsed json', json) // access json.body here
-		var thumbnail_url = json.items[0].snippet.thumbnails
-		if (thumbnail_url.maxres !== undefined) {
-			var final_url = thumbnail_url.maxres.url
-			console.log(final_url)
-		} else if (thumbnail_url.standard !== undefined) {
-			var final_url = thumbnail_url.standard.url
-			console.log(final_url)
-		} else if (thumbnail_url.high !== undefined) {
-			var final_url = thumbnail_url.high.url
-			console.log(final_url)
-		} else if (thumbnail_url.medium !== undefined) {
-			var final_url = thumbnail_url.medium.url
-			console.log(final_url)
-		} else  if (thumbnail_url.default !== undefined) {
-			var final_url = thumbnail_url.default.url
-			console.log(final_url)
-		}
-			var pic = document.getElementById('first')
-			pic.crossOrigin = 'Anonymous';
-			pic.src = "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?"+final_url
-			set_image()
-			window.title = json.items[0].snippet.title
-			window.author = json.items[0].snippet.channelTitle
-			
-						// Make sure image is finished loading
-			if (img.complete) {
-			  console.log(colorThief.getColor(img));
-			  var color = colorThief.getColor(img)
-
-			  					 $("body").animate({ backgroundColor: 'RGB('+color[0]+","+color[1]+","+color[2]+")" }, { duration: 1000, queue: false });
-								  $("textarea").animate({ backgroundColor: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
-								   $("textarea").animate({ color: 'RGB('+color[0]+","+color[1]+","+color[2]+")" }, { duration: 1000, queue: false });
-								   $("h3").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
-								   $("div#status,div#log,").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
-
-			} else {
-			  img.addEventListener('load', function() {
-				console.log(colorThief.getColor(img));
-				var color = colorThief.getColor(img)
-				 $("body").animate({ backgroundColor: 'RGB('+color[0]+","+color[1]+","+color[2]+")" }, { duration: 1000, queue: false });
-				  $("textarea").animate({ backgroundColor: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
-				  $("textarea").animate({ color: 'RGB('+color[0]+","+color[1]+","+color[2]+")" }, { duration: 1000, queue: false });
-				   $("h3").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
-								   $("div#status,div#log").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
-			  });
-			}
-			
-			document.getElementById("title").value=json.items[0].snippet.title
-			document.getElementById("artist").value=json.items[0].snippet.channelTitle
-			document.getElementById("album").value=json.items[0].snippet.channelTitle+" - "+json.items[0].snippet.title
-	  })
-	  
+      document.getElementById("title").value = json.items[0].snippet.title
+      document.getElementById("artist").value =
+        json.items[0].snippet.channelTitle
+      document.getElementById("album").value =
+        json.items[0].snippet.channelTitle + " - " + json.items[0].snippet.title
+    })
 }
-function reset(){
-	resize.destroy()
-	$('#final').removeAttr('src')
-	document.querySelector("#first").src = 'yagoo butlerr.png'
-	$("body").animate({ backgroundColor: '#666' }, { duration: 1000, queue: false });
-	$("textarea").animate({ backgroundColor: '#FFFFFF' }, { duration: 1000, queue: false });
-	$("textarea").animate({ color: '#000000' }, { duration: 1000, queue: false });
-	$("h3").animate({ color: '#FFFFFF' }, { duration: 1000, queue: false });
-	 $("div#status").animate({ color: '#FFFFFF' }, { duration: 1000, queue: false });
+function reset() {
+  resize.destroy()
+  $("#final").removeAttr("src")
+  document.querySelector("#first").src = "yagoo butlerr.png"
+  $("body").animate(
+    { backgroundColor: "#666" },
+    { duration: 1000, queue: false }
+  )
+  $("textarea").animate(
+    { backgroundColor: "#FFFFFF" },
+    { duration: 1000, queue: false }
+  )
+  $("textarea").animate({ color: "#000000" }, { duration: 1000, queue: false })
+  $("h3").animate({ color: "#FFFFFF" }, { duration: 1000, queue: false })
+  $("div#status").animate(
+    { color: "#FFFFFF" },
+    { duration: 1000, queue: false }
+  )
 }
+
 </script>
 <script src="https://apis.google.com/js/api.js"></script>
 <!-- <script src='ytapi.js'></script> -->
 <div>
-<img src='yt2mp3.png' srcset="https://res.cloudinary.com/bananaman/image/upload/c_scale,w_1394/v1630492153/yt2mp3_n2gxyd.png 1394w, https://res.cloudinary.com/bananaman/image/upload/c_scale,w_835/v1630492153/yt2mp3_n2gxyd.png 835w, https://res.cloudinary.com/bananaman/image/upload/c_scale,w_410/v1630492153/yt2mp3_n2gxyd.png 410w, https://res.cloudinary.com/bananaman/image/upload/c_scale,w_147/v1630492153/yt2mp3_n2gxyd.png 147w" sizes="25vw" style="width: 25vw;    min-width: 300px;height: auto;aspect-ratio: 1760 / 717;">
-<h3>YouTube URL</h3>
-<textarea name="data" id="data" rows="4" cols="50"></textarea><br>
-<button id='go' class="bubbly-button" onclick="LinkGet(document.getElementById('data'))">GO!</button>
-<!-- <div id='coolthing'></div> -->
-<!-- <script src='bundle2.js'></script>
+  <img src="yt2mp3.png" srcset="https://res.cloudinary.com/bananaman/image/upload/c_scale,w_1394/v1630492153/yt2mp3_n2gxyd.png 1394w, https://res.cloudinary.com/bananaman/image/upload/c_scale,w_835/v1630492153/yt2mp3_n2gxyd.png 835w, https://res.cloudinary.com/bananaman/image/upload/c_scale,w_410/v1630492153/yt2mp3_n2gxyd.png 410w, https://res.cloudinary.com/bananaman/image/upload/c_scale,w_147/v1630492153/yt2mp3_n2gxyd.png 147w" sizes="25vw" style="width: 25vw; min-width: 300px; height: auto; aspect-ratio: 1760 / 717" />
+  <h3>YouTube URL</h3>
+  <textarea name="data" id="data" rows="4" cols="50"></textarea><br />
+  <button id="go" class="bubbly-button" onclick="LinkGet(document.getElementById('data'))">GO!</button>
+  <!-- <div id='coolthing'></div> -->
+  <!-- <script src='bundle2.js'></script>
 <script src='bundle3.js'></script> -->
 
-<button id='reset' class="bubbly-button" onclick="reset()">Reset</button>
-<br>
+  <button id="reset" class="bubbly-button" onclick="reset()">Reset</button>
+  <br />
 </div>
 <div>
-<img id="first" src='yagoo butlerr.png' style='width: 492px;height: 666px;'/>
+  <img id="first" src="yagoo butlerr.png" style="width: 492px; height: 666px" />
 </div>
 <div>
-
-<button id='crop' class="bubbly-button">CROP!</button><br>
-<img id="final"><br>
-<h3>Title</h3>
-<textarea name="title" id="title" rows="4" cols="50"></textarea><br>
-<h3>Artist</h3>
-<textarea name="artist" id="artist" rows="4" cols="50"></textarea><br>
-<h3>Album</h3>
-<textarea name="album" id="album" rows="4" cols="50"></textarea><br>
-<button class="bubbly-button" id='download'>Download!</button><br>
-<div id='status'></div>
-<div id='log'></div>
-<div class="container">    
-  <div class="progress2 progress-moved">
-    <div class="progress-bar2" >
-    </div>                       
-  </div> 
-</div>
+  <button id="crop" class="bubbly-button">CROP!</button><br />
+  <img id="final" /><br />
+  <h3>Title</h3>
+  <textarea name="title" id="title" rows="4" cols="50"></textarea><br />
+  <h3>Artist</h3>
+  <textarea name="artist" id="artist" rows="4" cols="50"></textarea><br />
+  <h3>Album</h3>
+  <textarea name="album" id="album" rows="4" cols="50"></textarea><br />
+  <button class="bubbly-button" id="download">Download!</button><br />
+  <div id="status"></div>
+  <div id="log"></div>
+  <div class="container">
+    <div class="progress2 progress-moved">
+      <div class="progress-bar2"></div>
+    </div>
+  </div>
 </div>
 
-</div>
 <script>
-
-document.getElementById("crop").onclick = function() {myFunction()};
-document.getElementById("download").onclick = function() {downloadThing()};
+document.getElementById("crop").onclick = function () {
+  myFunction()
+}
+document.getElementById("download").onclick = function () {
+  downloadThing()
+}
 
 function myFunction() {
-  resize.result({
-  type: "canvas", 
-  size: "original", 
-  format: "png", 
-  quality: 1
-}).then(function(blob) {
-
-		//const blobUrl = URL.createObjectURL(blob) // blob is the Blob object
-		document.getElementById("final").src = blob
-		window.blob = blob
-  })
+  resize
+    .result({
+      type: "canvas",
+      size: "original",
+      format: "png",
+      quality: 1
+    })
+    .then(function (blob) {
+      //const blobUrl = URL.createObjectURL(blob) // blob is the Blob object
+      document.getElementById("final").src = blob
+      window.blob = blob
+    })
 }
 function downloadThing() {
-var finaltitle = document.getElementById('title').value.split("\n")[0]
-var finalartist = document.getElementById('artist').value.split("\n")[0]
-var finalalbum = document.getElementById('album').value.split("\n")[0]
-<!-- 	const http = new XMLHttpRequest()
-	<!--http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/download?url="+url)
-<!--	http.send() -->
-	<!-- window.open("https://yt2mp3-albumart.jericjanjan.repl.co/download?url="+url+"&img="+document.querySelector("#final").src) -->
-<!-- 	var canvasData = blob;
-<!--	var ajax = new XMLHttpRequest();-->
-	<!--ajax.open("POST",'https://yt2mp3-albumart.jericjanjan.repl.co/a');-->
-<!--	ajax.setRequestHeader('Content-Type', 'multipart/form-data');-->
-	<!--ajax.send(canvasData);  -->
-var file = document.getElementById("final")
+  var finaltitle = document.getElementById("title").value.split("\n")[0]
+  var finalartist = document.getElementById("artist").value.split("\n")[0]
+  var finalalbum = document.getElementById("album").value.split("\n")[0]
+  //	const http = new XMLHttpRequest()
+  //	http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/download?url="+url)
+  //	http.send()
+  // window.open("https://yt2mp3-albumart.jericjanjan.repl.co/download?url="+url+"&img="+document.querySelector("#final").src)
+  // 	var canvasData = blob;
+  //var ajax = new XMLHttpRequest();
+  //ajax.open("POST",'https://yt2mp3-albumart.jericjanjan.repl.co/a');
+  //	ajax.setRequestHeader('Content-Type', 'multipart/form-data');
+  //ajax.send(canvasData);
+  var file = document.getElementById("final")
 
-  function urltoFile(url, filename, mimeType){	
-        return (fetch(url)
-            .then(function(res){return res.arrayBuffer();})
-            .then(function(buf){return new File([buf], filename,{type:mimeType});})
-        );
-    }
-    
-var client = new XMLHttpRequest();
+  function urltoFile(url, filename, mimeType) {
+    return fetch(url)
+      .then(function (res) {
+        return res.arrayBuffer()
+      })
+      .then(function (buf) {
+        return new File([buf], filename, { type: mimeType })
+      })
+  }
 
-var fd = new FormData();
-  urltoFile(file.src, 'img.png','image/png')
-    .then(function(file){ fd.append("file", file);});
+  var client = new XMLHttpRequest()
 
-function saveBlob(blob, fileName) {
-    var a = document.createElement('a');
-    a.href = window.URL.createObjectURL(blob);
-    a.download = fileName;
-    a.dispatchEvent(new MouseEvent('click'));
-}
+  var fd = new FormData()
+  urltoFile(file.src, "img.png", "image/png").then(function (file) {
+    fd.append("file", file)
+  })
 
+  function saveBlob(blob, fileName) {
+    var a = document.createElement("a")
+    a.href = window.URL.createObjectURL(blob)
+    a.download = fileName
+    a.dispatchEvent(new MouseEvent("click"))
+  }
 
-
-
-function checkFlag() {
-    if(fd.get('file') == null) {
-       window.setTimeout(checkFlag, 100); /* this checks the flag every 100 milliseconds*/
+  function checkFlag() {
+    if (fd.get("file") == null) {
+      window.setTimeout(
+        checkFlag,
+        100
+      ) /* this checks the flag every 100 milliseconds*/
     } else {
-	console.log(fd.get('file'))
-<!--       client.open("post",'https://yt2mp3-albumart.jericjanjan.repl.co/download?url='+url+"&author="+finalartist+"&title="+finaltitle+"&album="+finalalbum, true);-->
-<!--  	  client.responseType = 'blob'-->
-<!--  	  client.send(fd);-->
-<!--  	  client.onload = function (e) {-->
-<!--  		var blob = client.response;-->
-<!--  	  console.log(blob)	  -->
-<!--  	  saveBlob(blob, title+'.mp3');-->
-<!--  	  } -->
-		$.ajax({
-    xhr: function() {
-        var xhr = new window.XMLHttpRequest();
+      console.log(fd.get("file"))
+      //      client.open("post",'https://yt2mp3-albumart.jericjanjan.repl.co/download?url='+url+"&author="+finalartist+"&title="+finaltitle+"&album="+finalalbum, true);
+      //  	  client.responseType = 'blob'
+      //  	  client.send(fd);
+      //  	  client.onload = function (e) {
+      //  		var blob = client.response;
+      // 	  console.log(blob)
+      //  	  saveBlob(blob, title+'.mp3');
+      // 	  }
+      $.ajax({
+        xhr: function () {
+          var xhr = new window.XMLHttpRequest()
 
-        // Upload progress
-        xhr.upload.addEventListener("progress", function(evt){
-            if (evt.lengthComputable) {
-                var percentComplete = (evt.loaded / evt.total)*100;
+          // Upload progress
+          xhr.upload.addEventListener(
+            "progress",
+            function (evt) {
+              if (evt.lengthComputable) {
+                var percentComplete = (evt.loaded / evt.total) * 100
                 //Do something with upload progress
-                console.log(percentComplete);
-				document.getElementById('status').innerHTML = percentComplete.toFixed(1)+"% uploaded"
-					$('.progress-bar2').each(function(){
-							var width=percentComplete.toFixed(1) +"%";
-							$(this).animate({ width: width }, 1);
-							}); 
-				if (document.getElementById('status').innerHTML == '100.0% uploaded'){
-					document.getElementById('status').innerHTML = 'Doing magic... Give it a minute or two.'
-					var evtSource = new EventSource("https://yt2mp3-albumart.jericjanjan.repl.co/log");
-					window.evtsource = evtSource
-					evtSource.onmessage = function(e) {
-<!-- 					if (e.data=='DONE!'){
-<!-- 						evtSource.close()-->
-	<!-- 				}else if (e.data.startsWith("video:0kB")){-->
-	<!-- 					document.getElementById('log').innerHTML = "Beep boop...";-->
-	<!-- 				}else{ -->
-					document.getElementById('log').innerHTML = e.data;
-					<!-- } -->
-}	
-				}
-            }
-       }, false);
-       
-       // Download progress
-       xhr.addEventListener("progress", function(evt){
-           if (evt.lengthComputable) {		
-				evtsource.close()
-				document.getElementById('log').innerHTML = '';
-               var percentComplete = (evt.loaded / evt.total)*100;
-               // Do something with download progress
-               console.log(percentComplete);
-			   document.getElementById('status').innerHTML = percentComplete.toFixed(1)+"% downloaded"
-			   $('.progress-bar2').each(function(){
-							var width=percentComplete.toFixed(1) +"%";
-							$(this).animate({ width: width }, 1);
-							}); 
-			   if (document.getElementById('status').innerHTML == '100.0% downloaded'){
-					document.getElementById('status').innerHTML = 'FINISHED!'
-				}
-           }
-       }, false);
-       
-       return xhr;
-    },
-    type: 'POST',
-    url: 'https://yt2mp3-albumart.jericjanjan.repl.co/download?url='+url+"&author="+finalartist+"&title="+finaltitle+"&album="+finalalbum,
-    data: fd,
-  processData: false,
-  contentType: false,
-              xhrFields:{
-                responseType: 'blob'
+                console.log(percentComplete)
+                document.getElementById("status").innerHTML =
+                  percentComplete.toFixed(1) + "% uploaded"
+                $(".progress-bar2").each(function () {
+                  var width = percentComplete.toFixed(1) + "%"
+                  $(this).animate({ width: width }, 1)
+                })
+                if (
+                  document.getElementById("status").innerHTML ==
+                  "100.0% uploaded"
+                ) {
+                  document.getElementById("status").innerHTML =
+                    "Doing magic... Give it a minute or two."
+                  var evtSource = new EventSource(
+                    "https://yt2mp3-albumart.jericjanjan.repl.co/log"
+                  )
+                  window.evtsource = evtSource
+                  evtSource.onmessage = function (e) {
+                    //					if (e.data=='DONE!'){
+                    //						evtSource.close()
+                    //					}else if (e.data.startsWith("video:0kB")){
+                    //					document.getElementById('log').innerHTML = "Beep boop...";
+                    //				}else{
+                    document.getElementById("log").innerHTML = e.data
+                    //		}
+                  }
+                }
+              }
             },
-    success: function(blob){
-		console.log(blob)
-       console.log(typeof blob)
-	   saveBlob(blob, title+'.mp3')
-    },
-	error: function (xhr, status, error) {
-<!-- 		console.log(xhr)
-<!--		console.log(status)-->
-<!--		console.log(error) -->
-		var errorMessage = xhr.status + ': ' + xhr.statusText
-        document.getElementById('status').innerHTML = errorMessage +" Try again :(";
-      }
-});
-      
+            false
+          )
+
+          // Download progress
+          xhr.addEventListener(
+            "progress",
+            function (evt) {
+              if (evt.lengthComputable) {
+                evtsource.close()
+                document.getElementById("log").innerHTML = ""
+                var percentComplete = (evt.loaded / evt.total) * 100
+                // Do something with download progress
+                console.log(percentComplete)
+                document.getElementById("status").innerHTML =
+                  percentComplete.toFixed(1) + "% downloaded"
+                $(".progress-bar2").each(function () {
+                  var width = percentComplete.toFixed(1) + "%"
+                  $(this).animate({ width: width }, 1)
+                })
+                if (
+                  document.getElementById("status").innerHTML ==
+                  "100.0% downloaded"
+                ) {
+                  document.getElementById("status").innerHTML = "FINISHED!"
+                }
+              }
+            },
+            false
+          )
+
+          return xhr
+        },
+        type: "POST",
+        url:
+          "https://yt2mp3-albumart.jericjanjan.repl.co/download?url=" +
+          url +
+          "&author=" +
+          finalartist +
+          "&title=" +
+          finaltitle +
+          "&album=" +
+          finalalbum,
+        data: fd,
+        processData: false,
+        contentType: false,
+        xhrFields: {
+          responseType: "blob"
+        },
+        success: function (blob) {
+          console.log(blob)
+          console.log(typeof blob)
+          saveBlob(blob, title + ".mp3")
+        },
+        error: function (xhr, status, error) {
+          //	console.log(xhr)
+          //		console.log(status)
+          //		console.log(error)
+          var errorMessage = xhr.status + ": " + xhr.statusText
+          document.getElementById("status").innerHTML =
+            errorMessage + " Try again :("
+        }
+      })
     }
+  }
+  checkFlag()
 }
-checkFlag();
-}
+
 </script>
 <script>
-var animateButton = function(e) {
-
-  e.preventDefault;
+var animateButton = function (e) {
+  e.preventDefault
   //reset animation
-  e.target.classList.remove('animate');
-  
-  e.target.classList.add('animate');
-  setTimeout(function(){
-    e.target.classList.remove('animate');
-  },700);
-};
+  e.target.classList.remove("animate")
 
-var bubblyButtons = document.getElementsByClassName("bubbly-button");
+  e.target.classList.add("animate")
+  setTimeout(function () {
+    e.target.classList.remove("animate")
+  }, 700)
+}
+
+var bubblyButtons = document.getElementsByClassName("bubbly-button")
 
 for (var i = 0; i < bubblyButtons.length; i++) {
-  bubblyButtons[i].addEventListener('click', animateButton, false);
+  bubblyButtons[i].addEventListener("click", animateButton, false)
 }
+
 </script>
 <!-- <script src='main.js'></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script>
-var mdzIndex = 10;
-$('.js-modal-open').on('click', function(e){
-	e.preventDefault();
-	mdzIndex++;
-	var mdId = $(this).data('modal-id');
-	if (mdId === null || mdId === '') return true;
-	$('#' + mdId).addClass('js-is-active').css({ 'z-index': mdzIndex });
-});
-$('.js-modal-close').on('click', function(){
-	$(this).closest('.js-modal').removeClass('js-is-active').css({ 'z-index': '' });
-	if ($('.js-modal.js-is-active').length === 0) {
-		mdzIndex = 10;
-	}
-});
-$('.js-modal').on('click', function(e){
-	if ($(e.target).hasClass('js-modal')) {
-		$(this).find('.js-modal-close').trigger('click');
-	}
-});
+var mdzIndex = 10
+$(".js-modal-open").on("click", function (e) {
+  e.preventDefault()
+  mdzIndex++
+  var mdId = $(this).data("modal-id")
+  if (mdId === null || mdId === "") return true
+  $("#" + mdId)
+    .addClass("js-is-active")
+    .css({ "z-index": mdzIndex })
+})
+$(".js-modal-close").on("click", function () {
+  $(this)
+    .closest(".js-modal")
+    .removeClass("js-is-active")
+    .css({ "z-index": "" })
+  if ($(".js-modal.js-is-active").length === 0) {
+    mdzIndex = 10
+  }
+})
+$(".js-modal").on("click", function (e) {
+  if ($(e.target).hasClass("js-modal")) {
+    $(this).find(".js-modal-close").trigger("click")
+  }
+})
+
 </script>
 <script>
-var http = new XMLHttpRequest();
-http.open('POST','https://api.uptimerobot.com/v2/getMonitors?format=json&api_key=m789063836-d171e621fd1ec06c641b4942',false)
+var http = new XMLHttpRequest()
+http.open(
+  "POST",
+  "https://api.uptimerobot.com/v2/getMonitors?format=json&api_key=m789063836-d171e621fd1ec06c641b4942",
+  false
+)
 http.send()
 var status = JSON.parse(http.response).monitors[0].status
-if (status=='0'){
-var fstatus = 'PAUSED'
-} else if (status=='1'){
-var fstatus = 'NOT CHECKED YET'
-} else if (status=='2'){
-var fstatus = 'UP'
-} else if (status=='8'){
-var fstatus = 'SEEMS DOWN'
-} else if (status=='9'){
-var fstatus = 'DOWN'
+if (status == "0") {
+  var fstatus = "PAUSED"
+} else if (status == "1") {
+  var fstatus = "NOT CHECKED YET"
+} else if (status == "2") {
+  var fstatus = "UP"
+} else if (status == "8") {
+  var fstatus = "SEEMS DOWN"
+} else if (status == "9") {
+  var fstatus = "DOWN"
 }
 
 document.querySelector("#uptime2").innerHTML = fstatus
