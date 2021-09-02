@@ -126,6 +126,18 @@
 	bottom:5px;
 }
 
+#uptime {
+    position: fixed;
+    left: 10px;
+    bottom: 5px;
+}
+
+#uptime2 {
+    position: fixed;
+    left: 170px;
+    bottom: 5px;
+}
+
 body, button {font-family: Lexend Deca; color: #666;}
 
 ::-webkit-scrollbar {width: 8px; height: 8px;}

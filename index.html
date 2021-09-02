@@ -70,6 +70,10 @@ font-weight: bold;
 <div id="page">
 <h3 id='faq' class="btn-open js-modal-open" data-modal-id="modal-id-a" >FAQ</h3>
 <h3 id='about' class="btn-open js-modal-open" data-modal-id="modal-id-b">CREDITS</h3>
+<h3 id='uptime'>SERVER STATUS:</h3>
+<h3 id='uptime2'>CHECKING...</h3>
+
+
 </div>
 
 <div id="modal">
@@ -246,7 +250,7 @@ function LinkGet(val){
 								  $("textarea").animate({ backgroundColor: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
 								   $("textarea").animate({ color: 'RGB('+color[0]+","+color[1]+","+color[2]+")" }, { duration: 1000, queue: false });
 								   $("h3").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
-								   $("div#status,div#log").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
+								   $("div#status,div#log,").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
 
 			} else {
 			  img.addEventListener('load', function() {
@@ -507,6 +511,26 @@ $('.js-modal').on('click', function(e){
 		$(this).find('.js-modal-close').trigger('click');
 	}
 });
+</script>
+<script>
+var http = new XMLHttpRequest();
+http.open('POST','https://api.uptimerobot.com/v2/getMonitors?format=json&api_key=m789063836-d171e621fd1ec06c641b4942',false)
+http.send()
+var status = JSON.parse(http.response).monitors[0].status
+if (status=='0'){
+var fstatus = 'PAUSED'
+} else if (status=='1'){
+var fstatus = 'NOT CHECKED YET'
+} else if (status=='2'){
+var fstatus = 'UP'
+} else if (status=='8'){
+var fstatus = 'SEEMS DOWN'
+} else if (status=='9'){
+var fstatus = 'DOWN'
+}
+
+document.querySelector("#uptime2").innerHTML = fstatus
+
 </script>
 </body>
 </html>
