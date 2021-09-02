@@ -180,6 +180,9 @@ function set_image() {
 }
 
 function LinkGet(val) {
+ const http = new XMLHttpRequest()
+  	http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/go")
+  	http.send()
   const colorThief = new ColorThief()
   const img = document.querySelector("#first")
 
@@ -260,7 +263,7 @@ function LinkGet(val) {
           { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
           { duration: 1000, queue: false }
         )
-        $("div#status,div#log,").animate(
+        $("div#status,div#log").animate(
           { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
           { duration: 1000, queue: false }
         )
@@ -308,6 +311,9 @@ function LinkGet(val) {
     })
 }
 function reset() {
+  const http = new XMLHttpRequest()
+  	http.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/reset")
+  	http.send()
   resize.destroy()
   $("#final").removeAttr("src")
   document.querySelector("#first").src = "yagoo butlerr.png"
@@ -325,6 +331,7 @@ function reset() {
     { color: "#FFFFFF" },
     { duration: 1000, queue: false }
   )
+
 }
 
 </script>
