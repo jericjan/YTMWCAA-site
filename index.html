@@ -44,7 +44,7 @@ div {
 h3 {
     margin-bottom: 0;
 
-    color: white;
+    color: rgb(219, 218, 213);
 }
 
 body{ background-color: RGB(36, 37, 42); }
@@ -52,6 +52,12 @@ body{ background-color: RGB(36, 37, 42); }
 div#status {
 
     color: white;
+}
+
+textarea {
+font-weight: bold;
+    background-color: rgb(219, 218, 213);
+    color: rgb(36, 37, 42);
 }
 </style>
 <link rel="stylesheet" href="style.css">
@@ -262,6 +268,12 @@ function LinkGet(val){
 function reset(){
 	resize.destroy()
 	$('#final').removeAttr('src')
+	document.querySelector("#first").src = 'yagoo butlerr.png'
+	$("body").animate({ backgroundColor: '#666' }, { duration: 1000, queue: false });
+	$("textarea").animate({ backgroundColor: '#FFFFFF' }, { duration: 1000, queue: false });
+	$("textarea").animate({ color: '#000000' }, { duration: 1000, queue: false });
+	$("h3").animate({ color: '#FFFFFF' }, { duration: 1000, queue: false });
+	 $("div#status").animate({ color: '#FFFFFF' }, { duration: 1000, queue: false });
 }
 </script>
 <script src="https://apis.google.com/js/api.js"></script>
