@@ -1,0 +1,225 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<link rel="stylesheet" href="croppie.css">
+<script src="croppie.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>title</title>
+  <meta name="description" content="eh">
+<style>
+div {
+    text-align: center;
+}
+
+h3 {
+
+    margin-bottom: 0;
+
+}
+</style>
+
+</head>
+
+<body>
+<script src='bundle.js'></script>
+
+<script>
+function set_image(){
+
+	var el = document.getElementById('first');
+	var resize = new Croppie(el, {
+		viewport: { width: 200, height: 200 },
+		boundary: { width: 600, height: 600 },
+		showZoomer: true,
+		enableResize: false,
+		enableOrientation: true,
+		mouseWheelZoom: 'ctrl',
+		useCORS:true
+	});
+	resize.bind({
+		url: el,
+	});
+	window.resize = resize
+}
+
+function LinkGet(val){
+	var array1 = val.value.split("\n")[0]
+	if (array1.startsWith('https://youtu.be/')){
+		var idd = array1.split('?')[0].split('/')[array1.split('?')[0].split('/').length-1]
+		window.url = array1.split('?')[0]
+	}else if (array1.startsWith('https://www.youtube.com/')){
+		var idd = array1.split('&')[0].split('=')[1]
+		window.url = array1.split('&')[0]
+	}else{
+		alert("Not a YouTube URL");
+	}
+	window.url = array1
+	
+	
+
+	//const http = new XMLHttpRequest()
+	//http.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=YOUR_API_KEY_HERE")
+	//http.send()
+	//console.log(JSON.parse(http.response))
+	
+	fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=YOUR_API_KEY_HERE")
+	  .then(response => response.json())
+	  .then(json => {
+		console.log('parsed json', json) // access json.body here
+		var thumbnail_url = json.items[0].snippet.thumbnails
+		if (thumbnail_url.maxres !== undefined) {
+			var final_url = thumbnail_url.maxres.url
+			console.log(final_url)
+		} else if (thumbnail_url.standard !== undefined) {
+			var final_url = thumbnail_url.standard.url
+			console.log(final_url)
+		} else if (thumbnail_url.high !== undefined) {
+			var final_url = thumbnail_url.high.url
+			console.log(final_url)
+		} else if (thumbnail_url.medium !== undefined) {
+			var final_url = thumbnail_url.medium.url
+			console.log(final_url)
+		} else  if (thumbnail_url.default !== undefined) {
+			var final_url = thumbnail_url.default.url
+			console.log(final_url)
+		}
+			var pic = document.getElementById('first')
+			pic.crossOrigin = 'Anonymous';
+			pic.src = "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?"+final_url
+			set_image()
+			window.title = json.items[0].snippet.title
+			window.author = json.items[0].snippet.channelTitle
+			document.getElementById("title").value=json.items[0].snippet.title
+			document.getElementById("artist").value=json.items[0].snippet.channelTitle
+			document.getElementById("album").value=json.items[0].snippet.channelTitle+" - "+json.items[0].snippet.title
+	  })
+	  
+}
+function reset(){
+	resize.destroy()
+	$('#final').removeAttr('src')
+}
+</script>
+<script src="https://apis.google.com/js/api.js"></script>
+<script src='ytapi.js'></script>
+<div>
+<textarea name="data" id="data" rows="4" cols="50"></textarea><br>
+<button id='go' onclick="LinkGet(document.getElementById('data'))">GO!</button>
+<button id='go' onclick="reset()">Reset</button>
+<br>
+</div>
+<div>
+<img id="first" src='yagoo butlerr.png'/>
+</div>
+<div>
+
+<button id='crop'>CROP!</button><br>
+<img id="final"><br>
+<h3>Title</h3>
+<textarea name="title" id="title" rows="4" cols="50"></textarea><br>
+<h3>Artist</h3>
+<textarea name="artist" id="artist" rows="4" cols="50"></textarea><br>
+<h3>Album</h3>
+<textarea name="album" id="album" rows="4" cols="50"></textarea><br>
+<button id='download'>Download!</button><br>
+<div id='status'></div>
+</div>
+
+</div>
+<script>
+
+document.getElementById("crop").onclick = function() {myFunction()};
+document.getElementById("download").onclick = function() {downloadThing()};
+
+function myFunction() {
+  resize.result({
+  type: "canvas", 
+  size: "original", 
+  format: "png", 
+  quality: 1
+}).then(function(blob) {
+
+		//const blobUrl = URL.createObjectURL(blob) // blob is the Blob object
+		document.getElementById("final").src = blob
+		window.blob = blob
+  })
+}
+function downloadThing() {
+var finaltitle = document.getElementById('title').value.split("\n")[0]
+var finalartist = document.getElementById('artist').value.split("\n")[0]
+var finalalbum = document.getElementById('album').value.split("\n")[0]
+<!-- 	const http = new XMLHttpRequest()
+	<!--http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/download?url="+url)
+<!--	http.send() -->
+	<!-- window.open("https://yt2mp3-albumart.jericjanjan.repl.co/download?url="+url+"&img="+document.querySelector("#final").src) -->
+<!-- 	var canvasData = blob;
+<!--	var ajax = new XMLHttpRequest();-->
+	<!--ajax.open("POST",'https://yt2mp3-albumart.jericjanjan.repl.co/a');-->
+<!--	ajax.setRequestHeader('Content-Type', 'multipart/form-data');-->
+	<!--ajax.send(canvasData);  -->
+var file = document.getElementById("final")
+
+  function urltoFile(url, filename, mimeType){	
+        return (fetch(url)
+            .then(function(res){return res.arrayBuffer();})
+            .then(function(buf){return new File([buf], filename,{type:mimeType});})
+        );
+    }
+    
+var client = new XMLHttpRequest();
+
+var fd = new FormData();
+  urltoFile(file.src, 'img.png','image/png')
+    .then(function(file){ fd.append("file", file);});
+
+function saveBlob(blob, fileName) {
+    var a = document.createElement('a');
+    a.href = window.URL.createObjectURL(blob);
+    a.download = fileName;
+    a.dispatchEvent(new MouseEvent('click'));
+}
+
+
+
+
+function checkFlag() {
+    if(fd.get('file') == null) {
+       window.setTimeout(checkFlag, 100); /* this checks the flag every 100 milliseconds*/
+    } else {
+      client.open("post",'https://yt2mp3-albumart.jericjanjan.repl.co/download?url='+url+"&author="+finalartist+"&title="+finaltitle+"&album="+finalalbum, true);
+	  client.responseType = 'blob'
+	  client.send(fd);
+	  client.onload = function (e) {
+		var blob = client.response;
+	  console.log(blob)	  
+	  saveBlob(blob, title+'.mp3');
+	  }
+	  
+      
+    }
+}
+checkFlag();
+
+
+var http = new XMLHttpRequest();
+function checkStatus() {
+    if(http.response == "I'm busy...") {
+	   document.getElementById("status").innerHTML = "Working on it..."
+	   http.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/check")
+	   http.send();
+	   window.setTimeout(checkStatus, 1000); /* this checks the flag every 100 milliseconds*/
+    } else {
+      document.getElementById("status").innerHTML = "Downloading... (no progresss bar yet)"
+	  
+      
+    }
+}
+checkStatus();
+}
+</script>
+
+<!-- <script src='main.js'></script> -->
+</body>
+</html>

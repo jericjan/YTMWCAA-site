@@ -1,0 +1,2 @@
+var croppie = require('croppie')
+

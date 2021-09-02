@@ -1,0 +1,21 @@
+{
+  "name": "croppie",
+  "version": "1.0.0",
+  "description": "cropper thing",
+  "main": "poggers.js",
+  "scripts": {
+    "test": "croppie"
+  },
+  "repository": {
+    "type": "git",
+    "url": "huh"
+  },
+  "keywords": [
+    "uh"
+  ],
+  "author": "not me",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "croppie": "^2.6.5"
+  }
+}
