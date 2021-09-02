@@ -1,0 +1,4 @@
+/yagoo butlerr.png
+  cache-control: max-age=2592000
+/yt2mp3.png
+  cache-control: max-age=2592000
