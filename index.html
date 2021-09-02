@@ -200,7 +200,7 @@ function LinkGet(val){
 	}else{
 		alert("Not a YouTube URL");
 	}
-	window.url = array1
+
 	
 	
 
@@ -246,7 +246,7 @@ function LinkGet(val){
 								  $("textarea").animate({ backgroundColor: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
 								   $("textarea").animate({ color: 'RGB('+color[0]+","+color[1]+","+color[2]+")" }, { duration: 1000, queue: false });
 								   $("h3").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
-								   $("div#status").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
+								   $("div#status,div#log").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
 
 			} else {
 			  img.addEventListener('load', function() {
@@ -256,7 +256,7 @@ function LinkGet(val){
 				  $("textarea").animate({ backgroundColor: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
 				  $("textarea").animate({ color: 'RGB('+color[0]+","+color[1]+","+color[2]+")" }, { duration: 1000, queue: false });
 				   $("h3").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
-								   $("div#status").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
+								   $("div#status,div#log").animate({ color: invertColor(rgbToHex(color[0], color[1], color[2])) }, { duration: 1000, queue: false });
 			  });
 			}
 			
@@ -306,6 +306,7 @@ function reset(){
 <textarea name="album" id="album" rows="4" cols="50"></textarea><br>
 <button class="bubbly-button" id='download'>Download!</button><br>
 <div id='status'></div>
+<div id='log'></div>
 <div class="container">    
   <div class="progress2 progress-moved">
     <div class="progress-bar2" >
@@ -401,13 +402,26 @@ function checkFlag() {
 							}); 
 				if (document.getElementById('status').innerHTML == '100.0% uploaded'){
 					document.getElementById('status').innerHTML = 'Doing magic... Give it a minute or two.'
+					var evtSource = new EventSource("https://yt2mp3-albumart.jericjanjan.repl.co/log");
+					window.evtsource = evtSource
+					evtSource.onmessage = function(e) {
+<!-- 					if (e.data=='DONE!'){
+<!-- 						evtSource.close()-->
+	<!-- 				}else if (e.data.startsWith("video:0kB")){-->
+	<!-- 					document.getElementById('log').innerHTML = "Beep boop...";-->
+	<!-- 				}else{ -->
+					document.getElementById('log').innerHTML = e.data;
+					<!-- } -->
+}	
 				}
             }
        }, false);
        
        // Download progress
        xhr.addEventListener("progress", function(evt){
-           if (evt.lengthComputable) {
+           if (evt.lengthComputable) {		
+				evtsource.close()
+				document.getElementById('log').innerHTML = '';
                var percentComplete = (evt.loaded / evt.total)*100;
                // Do something with download progress
                console.log(percentComplete);
