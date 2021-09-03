@@ -82,7 +82,7 @@ textarea {
       <div class="modal-body">
         <h2>What is this?</h2>
         <p>This is <b>Kur0's YT To MP3 With Croppable Album Art™</b>. It's basically what the title says. You give it a link, adjust the cropped album art and the tags, and then press download. Simple as that.</p>
-        <p><b>PRESS "RESET" WHEN YOU WANT TO DOWNLOAD A DIFFERENT VIDEO</b></p>
+        
         <h2>What happens when I press "Download"?</h2>
         <p>
           Well, first it uploads the video's URL, cropped album art, and tags to a server I'm running. Then the server downloads the video's Opus audio using
@@ -117,6 +117,7 @@ textarea {
         <p><a href="https://youtube-dl.org/" target="_blank">youtube-dl</a> - For downloading youtube videos</p>
         <p><a href="https://www.ffmpeg.org/" target="_blank">ffmpeg</a> - for converting files</p>
         <p><a href="https://mutagen.readthedocs.io/en/latest/" target="_blank">mutagen</a> - for adding tags to audio files</p>
+		<p><a href="https://lokeshdhakar.com/projects/color-thief/" target="_blank">Color Thief</a> - grabbing dominant colors from images</p>
 
         <!-- 				<p><a href='' target='_blank'>
 				<p><a href='' target='_blank'>
@@ -180,6 +181,11 @@ function set_image() {
 }
 
 function LinkGet(val) {
+if (window.resize== undefined){
+console.log('no Croppie yet')
+}else{
+resize.destroy()
+}
  const http = new XMLHttpRequest()
   	http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/go",false)
  	http.withCredentials = true
@@ -312,29 +318,29 @@ function LinkGet(val) {
         json.items[0].snippet.channelTitle + " - " + json.items[0].snippet.title
     })
 }
-function reset() {
-  const http = new XMLHttpRequest()
-  	http.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/reset",false)
-  	http.send()
-  resize.destroy()
-  $("#final").removeAttr("src")
-  document.querySelector("#first").src = "yagoo butlerr.png"
-  $("body").animate(
-    { backgroundColor: "#666" },
-    { duration: 1000, queue: false }
-  )
-  $("textarea").animate(
-    { backgroundColor: "#FFFFFF" },
-    { duration: 1000, queue: false }
-  )
-  $("textarea").animate({ color: "#000000" }, { duration: 1000, queue: false })
-  $("h3").animate({ color: "#FFFFFF" }, { duration: 1000, queue: false })
-  $("div#status").animate(
-    { color: "#FFFFFF" },
-    { duration: 1000, queue: false }
-  )
+<!-- function reset() { -->
+  <!-- const http = new XMLHttpRequest() -->
+  	<!-- http.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/reset",false) -->
+  	<!-- http.send() -->
+  <!-- resize.destroy() -->
+  <!-- $("#final").removeAttr("src") -->
+  <!-- document.querySelector("#first").src = "yagoo butlerr.png" -->
+  <!-- $("body").animate( -->
+    <!-- { backgroundColor: "#666" }, -->
+    <!-- { duration: 1000, queue: false } -->
+  <!-- ) -->
+  <!-- $("textarea").animate( -->
+    <!-- { backgroundColor: "#FFFFFF" }, -->
+    <!-- { duration: 1000, queue: false } -->
+  <!-- ) -->
+  <!-- $("textarea").animate({ color: "#000000" }, { duration: 1000, queue: false }) -->
+  <!-- $("h3").animate({ color: "#FFFFFF" }, { duration: 1000, queue: false }) -->
+  <!-- $("div#status").animate( -->
+    <!-- { color: "#FFFFFF" }, -->
+    <!-- { duration: 1000, queue: false } -->
+  <!-- ) -->
 
-}
+<!-- } -->
 
 </script>
 <script src="https://apis.google.com/js/api.js"></script>
@@ -348,7 +354,7 @@ function reset() {
   <!-- <script src='bundle2.js'></script>
 <script src='bundle3.js'></script> -->
 
-  <button id="reset" class="bubbly-button" onclick="reset()">Reset</button>
+  <!-- <button id="reset" class="bubbly-button" onclick="reset()">Reset</button> -->
 
   <br />
 </div>
@@ -363,6 +369,7 @@ function reset() {
   <h3>Artist</h3>
   <textarea name="artist" id="artist" rows="4" cols="50"></textarea><br />
   <h3>Album</h3>
+  <button id='generate'>Generate from edited tags</button><br />
   <textarea name="album" id="album" rows="4" cols="50"></textarea><br />
   <button class="bubbly-button" id="download">Download!</button><br />
   <div id="status"></div>
@@ -386,6 +393,16 @@ document.getElementById("crop").onclick = function () {
 }
 document.getElementById("download").onclick = function () {
   downloadThing()
+}
+document.getElementById("generate").onclick = function () {
+  generateAlbum()
+}
+
+function generateAlbum() {
+  var finaltitle = document.getElementById("title").value.split("\n")[0]
+  var finalartist = document.getElementById("artist").value.split("\n")[0]
+  document.getElementById("album").value = finalartist +" - " + finaltitle
+
 }
 
 function myFunction() {
