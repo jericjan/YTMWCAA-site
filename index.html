@@ -399,8 +399,8 @@ document.getElementById("generate").onclick = function () {
 }
 
 function generateAlbum() {
-  var finaltitle = document.getElementById("title").value.split("\n")[0]
-  var finalartist = document.getElementById("artist").value.split("\n")[0]
+  var finaltitle = document.getElementById("title").value.split("\n")[0].trim()
+  var finalartist = document.getElementById("artist").value.split("\n")[0].trim()
   document.getElementById("album").value = finalartist +" - " + finaltitle
 
 }
@@ -420,9 +420,9 @@ function myFunction() {
     })
 }
 function downloadThing() {
-  var finaltitle = document.getElementById("title").value.split("\n")[0]
-  var finalartist = document.getElementById("artist").value.split("\n")[0]
-  var finalalbum = document.getElementById("album").value.split("\n")[0]
+  var finaltitle = document.getElementById("title").value.split("\n")[0].trim()
+  var finalartist = document.getElementById("artist").value.split("\n")[0].trim()
+  var finalalbum = document.getElementById("album").value.split("\n")[0].trim()
   //	const http = new XMLHttpRequest()
   //	http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/download?url="+url)
   //	http.send()
