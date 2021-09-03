@@ -266,7 +266,6 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 },{"process/browser.js":1,"timers":2}],3:[function(require,module,exports){
 var croppie = require('croppie')
 
-
 },{"croppie":4}],4:[function(require,module,exports){
 (function (setImmediate){(function (){
 /*************************

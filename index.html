@@ -181,8 +181,10 @@ function set_image() {
 
 function LinkGet(val) {
  const http = new XMLHttpRequest()
-  	http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/go")
+  	http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/go",false)
+ 	http.withCredentials = true
   	http.send()
+
   const colorThief = new ColorThief()
   const img = document.querySelector("#first")
 
@@ -312,7 +314,7 @@ function LinkGet(val) {
 }
 function reset() {
   const http = new XMLHttpRequest()
-  	http.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/reset")
+  	http.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/reset",false)
   	http.send()
   resize.destroy()
   $("#final").removeAttr("src")
@@ -347,6 +349,7 @@ function reset() {
 <script src='bundle3.js'></script> -->
 
   <button id="reset" class="bubbly-button" onclick="reset()">Reset</button>
+
   <br />
 </div>
 <div>
@@ -372,6 +375,12 @@ function reset() {
 </div>
 
 <script>
+
+;
+
+
+
+
 document.getElementById("crop").onclick = function () {
   myFunction()
 }
@@ -472,8 +481,21 @@ function downloadThing() {
                 ) {
                   document.getElementById("status").innerHTML =
                     "Doing magic... Give it a minute or two."
-                  var evtSource = new EventSource(
-                    "https://yt2mp3-albumart.jericjanjan.repl.co/log"
+                  
+				  var myVar = setInterval(myTimer, 1000);
+				  window.loginterval = myVar
+					function myTimer() {
+					    	http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/log",false) //seems to only work with POSTs not GET, so no more EventSource :(
+							http.withCredentials = true
+							http.send()
+							document.getElementById("log").innerHTML = http.response
+					}	
+				  
+				  
+				  
+				  
+				  var evtSource = new EventSource(
+                    "https://yt2mp3-albumart.jericjanjan.repl.co/log", { withCredentials: true }
                   )
                   window.evtsource = evtSource
                   evtSource.onmessage = function (e) {
@@ -496,7 +518,7 @@ function downloadThing() {
             "progress",
             function (evt) {
               if (evt.lengthComputable) {
-                evtsource.close()
+                clearInterval(loginterval)
                 document.getElementById("log").innerHTML = ""
                 var percentComplete = (evt.loaded / evt.total) * 100
                 // Do something with download progress
@@ -534,7 +556,9 @@ function downloadThing() {
         processData: false,
         contentType: false,
         xhrFields: {
-          responseType: "blob"
+          responseType: "blob",
+		  withCredentials: true
+		  
         },
         success: function (blob) {
           console.log(blob)
