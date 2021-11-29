@@ -435,8 +435,7 @@ for (var i = 0; i < bubblyButtons.length; i++) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-<script type='text/javascript' src='config.js'></script> <!-- contains YT API KEY -->
-
+<!-- <script type='text/javascript' src='config.js'></script>  -->
 <script>
 function componentToHex(c) {
   var hex = c.toString(16)
@@ -520,12 +519,8 @@ resize.destroy()
   //http.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=")
   //http.send()
   //console.log(JSON.parse(http.response))
-var yt_api_key = config.YT_API_KEY;
-  fetch(
-    "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" +
-      idd +
-      "&key="+yt_api_key
-  )
+//var yt_api_key = config.YT_API_KEY;
+  fetch("https://production.cool-sun-0721.cantilfrederick.workers.dev/"+idd)
     .then(response => response.json())
     .then(json => {
       console.log("parsed json", json) // access json.body here
