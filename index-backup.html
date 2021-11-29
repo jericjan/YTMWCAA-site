@@ -24,7 +24,8 @@ h3 {
 
 <body>
 <script src='bundle.js'></script>
-
+<script type='text/javascript' src='config.js'></script> <!-- contains YT API KEY -->
+<script type='text/javascript' src='script.js'></script> <!-- loads key as yt_api_key -->
 <script>
 function set_image(){
 
@@ -60,11 +61,11 @@ function LinkGet(val){
 	
 
 	//const http = new XMLHttpRequest()
-	//http.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=YOUR_API_KEY_HERE")
+	//http.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=")
 	//http.send()
 	//console.log(JSON.parse(http.response))
 	
-	fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=YOUR_API_KEY_HERE")
+	fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key="+yt_api_key)
 	  .then(response => response.json())
 	  .then(json => {
 		console.log('parsed json', json) // access json.body here
