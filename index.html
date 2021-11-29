@@ -134,223 +134,7 @@ textarea {
     </div>
   </div>
 </div>
-<script type='text/javascript' src='config.js'></script> <!-- contains YT API KEY -->
 
-<script>
-function componentToHex(c) {
-  var hex = c.toString(16)
-  return hex.length == 1 ? "0" + hex : hex
-}
-
-function rgbToHex(r, g, b) {
-  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
-}
-
-function invertColor(hex) {
-  if (hex.indexOf("#") === 0) {
-    hex = hex.slice(1)
-  }
-  // convert 3-digit hex to 6-digits.
-  if (hex.length === 3) {
-    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]
-  }
-  if (hex.length !== 6) {
-    throw new Error("Invalid HEX color.")
-  }
-  // invert color components
-  var r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
-    g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
-    b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16)
-  // pad each with zeros and return
-  return "#" + padZero(r) + padZero(g) + padZero(b)
-}
-
-function padZero(str, len) {
-  len = len || 2
-  var zeros = new Array(len).join("0")
-  return (zeros + str).slice(-len)
-}
-
-function set_image() {
-  var el = document.getElementById("first")
-  var resize = new Croppie(el, {
-    viewport: { width: 200, height: 200 },
-    boundary: { width: 600, height: 600 },
-    showZoomer: true,
-    enableResize: false,
-    enableOrientation: true,
-    mouseWheelZoom: "ctrl",
-    useCORS: true
-  })
-  resize.bind({
-    url: el
-  })
-  window.resize = resize
-}
-
-function LinkGet(val) {
-if (window.resize== undefined){
-console.log('no Croppie yet')
-}else{
-resize.destroy()
-}
-/*  const http = new XMLHttpRequest()
-  	http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/go",false)
- 	http.withCredentials = true
-  	http.send() */
-
-  const colorThief = new ColorThief()
-  const img = document.querySelector("#first")
-
-  var array1 = val.value.split("\n")[0]
-  if (array1.startsWith("https://youtu.be/")) {
-    var idd = array1.split("?")[0].split("/")[
-      array1.split("?")[0].split("/").length - 1
-    ]
-    window.url = array1.split("?")[0]
-  } else if (array1.startsWith("https://www.youtube.com/")) {
-    var idd = array1.split("&")[0].split("=")[1]
-    window.url = array1.split("&")[0]
-  } else {
-    alert("Not a YouTube URL")
-  }
-
-  //const http = new XMLHttpRequest()
-  //http.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=")
-  //http.send()
-  //console.log(JSON.parse(http.response))
-var yt_api_key = config.YT_API_KEY;
-  fetch(
-    "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" +
-      idd +
-      "&key="+yt_api_key
-  )
-    .then(response => response.json())
-    .then(json => {
-      console.log("parsed json", json) // access json.body here
-      var thumbnail_url = json.items[0].snippet.thumbnails
-      if (thumbnail_url.maxres !== undefined) {
-        var final_url = thumbnail_url.maxres.url
-        console.log(final_url)
-      } else if (thumbnail_url.standard !== undefined) {
-        var final_url = thumbnail_url.standard.url
-        console.log(final_url)
-      } else if (thumbnail_url.high !== undefined) {
-        var final_url = thumbnail_url.high.url
-        console.log(final_url)
-      } else if (thumbnail_url.medium !== undefined) {
-        var final_url = thumbnail_url.medium.url
-        console.log(final_url)
-      } else if (thumbnail_url.default !== undefined) {
-        var final_url = thumbnail_url.default.url
-        console.log(final_url)
-      }
-      var pic = document.getElementById("first")
-      pic.crossOrigin = "Anonymous"
-      pic.src =
-        "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url
-      set_image()
-      window.title = json.items[0].snippet.title
-      window.author = json.items[0].snippet.channelTitle
-
-      // Make sure image is finished loading
-      if (img.complete) {
-        console.log(colorThief.getColor(img))
-        var color = colorThief.getColor(img)
-
-        $("body").animate(
-          {
-            backgroundColor:
-              "RGB(" + color[0] + "," + color[1] + "," + color[2] + ")"
-          },
-          { duration: 1000, queue: false }
-        )
-        $("textarea").animate(
-          {
-            backgroundColor: invertColor(rgbToHex(color[0], color[1], color[2]))
-          },
-          { duration: 1000, queue: false }
-        )
-        $("textarea").animate(
-          { color: "RGB(" + color[0] + "," + color[1] + "," + color[2] + ")" },
-          { duration: 1000, queue: false }
-        )
-        $("h3").animate(
-          { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
-          { duration: 1000, queue: false }
-        )
-        $("div#status,div#log").animate(
-          { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
-          { duration: 1000, queue: false }
-        )
-      } else {
-        img.addEventListener("load", function () {
-          console.log(colorThief.getColor(img))
-          var color = colorThief.getColor(img)
-          $("body").animate(
-            {
-              backgroundColor:
-                "RGB(" + color[0] + "," + color[1] + "," + color[2] + ")"
-            },
-            { duration: 1000, queue: false }
-          )
-          $("textarea").animate(
-            {
-              backgroundColor: invertColor(
-                rgbToHex(color[0], color[1], color[2])
-              )
-            },
-            { duration: 1000, queue: false }
-          )
-          $("textarea").animate(
-            {
-              color: "RGB(" + color[0] + "," + color[1] + "," + color[2] + ")"
-            },
-            { duration: 1000, queue: false }
-          )
-          $("h3").animate(
-            { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
-            { duration: 1000, queue: false }
-          )
-          $("div#status,div#log").animate(
-            { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
-            { duration: 1000, queue: false }
-          )
-        })
-      }
-
-      document.getElementById("title").value = json.items[0].snippet.title
-      document.getElementById("artist").value =
-        json.items[0].snippet.channelTitle
-      document.getElementById("album").value =
-        json.items[0].snippet.channelTitle + " - " + json.items[0].snippet.title
-    })
-}
-<!-- function reset() { -->
-  <!-- const http = new XMLHttpRequest() -->
-  	<!-- http.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/reset",false) -->
-  	<!-- http.send() -->
-  <!-- resize.destroy() -->
-  <!-- $("#final").removeAttr("src") -->
-  <!-- document.querySelector("#first").src = "yagoo butlerr.png" -->
-  <!-- $("body").animate( -->
-    <!-- { backgroundColor: "#666" }, -->
-    <!-- { duration: 1000, queue: false } -->
-  <!-- ) -->
-  <!-- $("textarea").animate( -->
-    <!-- { backgroundColor: "#FFFFFF" }, -->
-    <!-- { duration: 1000, queue: false } -->
-  <!-- ) -->
-  <!-- $("textarea").animate({ color: "#000000" }, { duration: 1000, queue: false }) -->
-  <!-- $("h3").animate({ color: "#FFFFFF" }, { duration: 1000, queue: false }) -->
-  <!-- $("div#status").animate( -->
-    <!-- { color: "#FFFFFF" }, -->
-    <!-- { duration: 1000, queue: false } -->
-  <!-- ) -->
-
-<!-- } -->
-
-</script>
 <script src="https://apis.google.com/js/api.js"></script>
 <!-- <script src='ytapi.js'></script> -->
 <div>
@@ -650,6 +434,225 @@ for (var i = 0; i < bubblyButtons.length; i++) {
 <!-- <script src='main.js'></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script type='text/javascript' src='config.js'></script> <!-- contains YT API KEY -->
+
+<script>
+function componentToHex(c) {
+  var hex = c.toString(16)
+  return hex.length == 1 ? "0" + hex : hex
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
+}
+
+function invertColor(hex) {
+  if (hex.indexOf("#") === 0) {
+    hex = hex.slice(1)
+  }
+  // convert 3-digit hex to 6-digits.
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]
+  }
+  if (hex.length !== 6) {
+    throw new Error("Invalid HEX color.")
+  }
+  // invert color components
+  var r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
+    g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
+    b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16)
+  // pad each with zeros and return
+  return "#" + padZero(r) + padZero(g) + padZero(b)
+}
+
+function padZero(str, len) {
+  len = len || 2
+  var zeros = new Array(len).join("0")
+  return (zeros + str).slice(-len)
+}
+
+function set_image() {
+  var el = document.getElementById("first")
+  var resize = new Croppie(el, {
+    viewport: { width: 200, height: 200 },
+    boundary: { width: 600, height: 600 },
+    showZoomer: true,
+    enableResize: false,
+    enableOrientation: true,
+    mouseWheelZoom: "ctrl",
+    useCORS: true
+  })
+  resize.bind({
+    url: el
+  })
+  window.resize = resize
+}
+
+function LinkGet(val) {
+if (window.resize== undefined){
+console.log('no Croppie yet')
+}else{
+resize.destroy()
+}
+/*  const http = new XMLHttpRequest()
+  	http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/go",false)
+ 	http.withCredentials = true
+  	http.send() */
+
+  const colorThief = new ColorThief()
+  const img = document.querySelector("#first")
+
+  var array1 = val.value.split("\n")[0]
+  if (array1.startsWith("https://youtu.be/")) {
+    var idd = array1.split("?")[0].split("/")[
+      array1.split("?")[0].split("/").length - 1
+    ]
+    window.url = array1.split("?")[0]
+  } else if (array1.startsWith("https://www.youtube.com/")) {
+    var idd = array1.split("&")[0].split("=")[1]
+    window.url = array1.split("&")[0]
+  } else {
+    alert("Not a YouTube URL")
+  }
+
+  //const http = new XMLHttpRequest()
+  //http.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=")
+  //http.send()
+  //console.log(JSON.parse(http.response))
+var yt_api_key = config.YT_API_KEY;
+  fetch(
+    "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" +
+      idd +
+      "&key="+yt_api_key
+  )
+    .then(response => response.json())
+    .then(json => {
+      console.log("parsed json", json) // access json.body here
+      var thumbnail_url = json.items[0].snippet.thumbnails
+      if (thumbnail_url.maxres !== undefined) {
+        var final_url = thumbnail_url.maxres.url
+        console.log(final_url)
+      } else if (thumbnail_url.standard !== undefined) {
+        var final_url = thumbnail_url.standard.url
+        console.log(final_url)
+      } else if (thumbnail_url.high !== undefined) {
+        var final_url = thumbnail_url.high.url
+        console.log(final_url)
+      } else if (thumbnail_url.medium !== undefined) {
+        var final_url = thumbnail_url.medium.url
+        console.log(final_url)
+      } else if (thumbnail_url.default !== undefined) {
+        var final_url = thumbnail_url.default.url
+        console.log(final_url)
+      }
+      var pic = document.getElementById("first")
+      pic.crossOrigin = "Anonymous"
+      pic.src =
+        "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url
+      set_image()
+      window.title = json.items[0].snippet.title
+      window.author = json.items[0].snippet.channelTitle
+
+      // Make sure image is finished loading
+      if (img.complete) {
+        console.log(colorThief.getColor(img))
+        var color = colorThief.getColor(img)
+
+        $("body").animate(
+          {
+            backgroundColor:
+              "RGB(" + color[0] + "," + color[1] + "," + color[2] + ")"
+          },
+          { duration: 1000, queue: false }
+        )
+        $("textarea").animate(
+          {
+            backgroundColor: invertColor(rgbToHex(color[0], color[1], color[2]))
+          },
+          { duration: 1000, queue: false }
+        )
+        $("textarea").animate(
+          { color: "RGB(" + color[0] + "," + color[1] + "," + color[2] + ")" },
+          { duration: 1000, queue: false }
+        )
+        $("h3").animate(
+          { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
+          { duration: 1000, queue: false }
+        )
+        $("div#status,div#log").animate(
+          { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
+          { duration: 1000, queue: false }
+        )
+      } else {
+        img.addEventListener("load", function () {
+          console.log(colorThief.getColor(img))
+          var color = colorThief.getColor(img)
+          $("body").animate(
+            {
+              backgroundColor:
+                "RGB(" + color[0] + "," + color[1] + "," + color[2] + ")"
+            },
+            { duration: 1000, queue: false }
+          )
+          $("textarea").animate(
+            {
+              backgroundColor: invertColor(
+                rgbToHex(color[0], color[1], color[2])
+              )
+            },
+            { duration: 1000, queue: false }
+          )
+          $("textarea").animate(
+            {
+              color: "RGB(" + color[0] + "," + color[1] + "," + color[2] + ")"
+            },
+            { duration: 1000, queue: false }
+          )
+          $("h3").animate(
+            { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
+            { duration: 1000, queue: false }
+          )
+          $("div#status,div#log").animate(
+            { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
+            { duration: 1000, queue: false }
+          )
+        })
+      }
+
+      document.getElementById("title").value = json.items[0].snippet.title
+      document.getElementById("artist").value =
+        json.items[0].snippet.channelTitle
+      document.getElementById("album").value =
+        json.items[0].snippet.channelTitle + " - " + json.items[0].snippet.title
+    })
+}
+<!-- function reset() { -->
+  <!-- const http = new XMLHttpRequest() -->
+  	<!-- http.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/reset",false) -->
+  	<!-- http.send() -->
+  <!-- resize.destroy() -->
+  <!-- $("#final").removeAttr("src") -->
+  <!-- document.querySelector("#first").src = "yagoo butlerr.png" -->
+  <!-- $("body").animate( -->
+    <!-- { backgroundColor: "#666" }, -->
+    <!-- { duration: 1000, queue: false } -->
+  <!-- ) -->
+  <!-- $("textarea").animate( -->
+    <!-- { backgroundColor: "#FFFFFF" }, -->
+    <!-- { duration: 1000, queue: false } -->
+  <!-- ) -->
+  <!-- $("textarea").animate({ color: "#000000" }, { duration: 1000, queue: false }) -->
+  <!-- $("h3").animate({ color: "#FFFFFF" }, { duration: 1000, queue: false }) -->
+  <!-- $("div#status").animate( -->
+    <!-- { color: "#FFFFFF" }, -->
+    <!-- { duration: 1000, queue: false } -->
+  <!-- ) -->
+
+<!-- } -->
+
+</script>
+
 <script>
 var mdzIndex = 10
 $(".js-modal-open").on("click", function (e) {
