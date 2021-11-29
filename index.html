@@ -134,7 +134,8 @@ textarea {
     </div>
   </div>
 </div>
-
+<script type='text/javascript' src='config.js'></script> <!-- contains YT API KEY -->
+<script type='text/javascript' src='script.js'></script> <!-- loads key as yt_api_key -->
 <script>
 function componentToHex(c) {
   var hex = c.toString(16)
@@ -215,14 +216,14 @@ resize.destroy()
   }
 
   //const http = new XMLHttpRequest()
-  //http.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=YOUR_API_KEY_HERE")
+  //http.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=")
   //http.send()
   //console.log(JSON.parse(http.response))
 
   fetch(
     "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" +
       idd +
-      "&key=YOUR_API_KEY_HERE"
+      "&key="+yt_api_key
   )
     .then(response => response.json())
     .then(json => {

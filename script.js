@@ -1,0 +1,1 @@
+var yt_api_key = config.YT_API_KEY;
