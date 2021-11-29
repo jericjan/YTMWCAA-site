@@ -520,7 +520,7 @@ resize.destroy()
   //http.send()
   //console.log(JSON.parse(http.response))
 //var yt_api_key = config.YT_API_KEY;
-  fetch("https://cool-sun-0721.cantilfrederick.workers.dev/"+idd)
+  fetch("https://cool-sun-0721.cantilfrederick.workers.dev/"+idd) //proxy that gets data from yt api
     .then(response => response.json())
     .then(json => {
       console.log("parsed json", json) // access json.body here
@@ -544,7 +544,7 @@ resize.destroy()
       var pic = document.getElementById("first")
       pic.crossOrigin = "Anonymous"
       pic.src =
-        "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url
+        "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url // simple cors proxy server
       set_image()
       window.title = json.items[0].snippet.title
       window.author = json.items[0].snippet.channelTitle
