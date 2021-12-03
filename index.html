@@ -318,7 +318,7 @@ console.log("uuid is: "+uuid)
 				  
 				  
 				  var evtSource = new EventSource(
-                    "https://yt2mp3-albumart.jericjanjan.repl.co/log?uuid="+uuid, { withCredentials: true }
+                    "https://yt2mp3-albumart.jericjanjan.repl.co/log?pogid="+uuid, { withCredentials: true }
                   )
                   window.evtsource = evtSource
                   evtSource.onmessage = function (e) {
