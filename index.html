@@ -58,6 +58,11 @@ textarea {
 	background-color: rgb(219, 218, 213);
 	color: rgb(36, 37, 42);
 }
+img#final{
+border-width: 0px  ;
+border-style:solid;
+border-color:#000;
+}
 </style>
 <link rel="stylesheet" href="style.css">
 
@@ -581,6 +586,14 @@ resize.destroy()
           { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
           { duration: 1000, queue: false }
         )
+		$("img#final").animate(
+          { "border-color": invertColor(rgbToHex(color[0], color[1], color[2])) },
+          { duration: 1000, queue: false }
+        )
+		$("img#final").animate(
+          { "border-width": '8px' },
+          { duration: 1000, queue: false }
+        )
       } else {
         img.addEventListener("load", function () {
           console.log(colorThief.getColor(img))
@@ -614,6 +627,14 @@ resize.destroy()
             { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
             { duration: 1000, queue: false }
           )
+		$("img#final").animate(
+		  { "border-color": invertColor(rgbToHex(color[0], color[1], color[2])) },
+		  { duration: 1000, queue: false }
+		)
+				$("img#final").animate(
+          { "border-width": '8px' },
+          { duration: 1000, queue: false }
+        )
         })
       }
 
