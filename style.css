@@ -80,6 +80,16 @@
   box-shadow: 0 2px 25px rgb(0 255 43 / 20%);
 }
 
+#update-ytdlp {
+  background-color: #bd0202;
+  box-shadow: 0 2px 25px rgba(255, 0, 0, 0.5);
+}
+
+#update-ytdlp:active {
+  transform: scale(0.9);
+  background-color: #8a0000;
+  box-shadow: 0 2px 25px rgba(255, 0, 0, 0.2);
+}
 
 .bubbly-button {
   font-family: "Lexend Deca";

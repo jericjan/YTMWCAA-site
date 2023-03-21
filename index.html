@@ -175,7 +175,11 @@ border-color:#000;
     </div>
   </div>
 </div>
-
+<div>
+<button class="bubbly-button" id="update-ytdlp">Update server's yt-dlp</button><br />
+<a>↑Click this if the download fails.↑</a>
+<div id="ytdlp-log"></div>
+</div>
 <script>
 
 ;
@@ -646,29 +650,52 @@ resize.destroy()
         json.items[0].snippet.channelTitle + " - " + json.items[0].snippet.title
     })
 }
-<!-- function reset() { -->
-  <!-- const http = new XMLHttpRequest() -->
-  	<!-- http.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/reset",false) -->
-  	<!-- http.send() -->
-  <!-- resize.destroy() -->
-  <!-- $("#final").removeAttr("src") -->
-  <!-- document.querySelector("#first").src = "yagoo butlerr.png" -->
-  <!-- $("body").animate( -->
-    <!-- { backgroundColor: "#666" }, -->
-    <!-- { duration: 1000, queue: false } -->
-  <!-- ) -->
-  <!-- $("textarea").animate( -->
-    <!-- { backgroundColor: "#FFFFFF" }, -->
-    <!-- { duration: 1000, queue: false } -->
-  <!-- ) -->
-  <!-- $("textarea").animate({ color: "#000000" }, { duration: 1000, queue: false }) -->
-  <!-- $("h3").animate({ color: "#FFFFFF" }, { duration: 1000, queue: false }) -->
-  <!-- $("div#status").animate( -->
-    <!-- { color: "#FFFFFF" }, -->
-    <!-- { duration: 1000, queue: false } -->
-  <!-- ) -->
+// <!-- function reset() { -->
+//   <!-- const http = new XMLHttpRequest() -->
+//   	<!-- http.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/reset",false) -->
+//   	<!-- http.send() -->
+//   <!-- resize.destroy() -->
+//   <!-- $("#final").removeAttr("src") -->
+//   <!-- document.querySelector("#first").src = "yagoo butlerr.png" -->
+//   <!-- $("body").animate( -->
+//     <!-- { backgroundColor: "#666" }, -->
+//     <!-- { duration: 1000, queue: false } -->
+//   <!-- ) -->
+//   <!-- $("textarea").animate( -->
+//     <!-- { backgroundColor: "#FFFFFF" }, -->
+//     <!-- { duration: 1000, queue: false } -->
+//   <!-- ) -->
+//   <!-- $("textarea").animate({ color: "#000000" }, { duration: 1000, queue: false }) -->
+//   <!-- $("h3").animate({ color: "#FFFFFF" }, { duration: 1000, queue: false }) -->
+//   <!-- $("div#status").animate( -->
+//     <!-- { color: "#FFFFFF" }, -->
+//     <!-- { duration: 1000, queue: false } -->
+//   <!-- ) -->
 
-<!-- } -->
+// <!-- } -->
+
+document.getElementById("update-ytdlp").onclick = function () {
+  document.querySelector("#ytdlp-log").innerHTML = ""
+  var evtSource = new EventSource(
+  "https://yt2mp3-albumart.jericjanjan.repl.co/update-yt-dlp"
+  )
+  window.evtsource = evtSource
+  evtSource.onmessage = function (e) {
+      if (e.data == "END"){
+          console.log("closing")
+          evtSource.close()          
+      } else {
+          console.log(e.data)
+          var thing = document.createElement('a')
+          thing.innerHTML = e.data
+          document.querySelector("#ytdlp-log").appendChild(thing)
+          var linebreak = document.createElement("br")
+          document.querySelector("#ytdlp-log").appendChild(linebreak)
+      }
+  }  
+
+
+}
 
 </script>
 
