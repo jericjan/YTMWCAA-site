@@ -675,6 +675,7 @@ resize.destroy()
 // <!-- } -->
 
 document.getElementById("update-ytdlp").onclick = function () {
+  document.getElementById("update-ytdlp").disabled = true
   document.querySelector("#ytdlp-log").innerHTML = ""
   var evtSource = new EventSource(
   "https://yt2mp3-albumart.jericjanjan.repl.co/update-yt-dlp"
@@ -684,6 +685,7 @@ document.getElementById("update-ytdlp").onclick = function () {
       if (e.data == "END"){
           console.log("closing")
           evtSource.close()          
+          document.getElementById("update-ytdlp").disabled = false
       } else {
           console.log(e.data)
           var thing = document.createElement('a')
