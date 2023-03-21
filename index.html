@@ -1,167 +1,186 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
-<meta name="google-site-verification" content="466Yz9I6z5_B4IwkmLAXA0XSVH_ombPcy7ZFYY-hy_c" />
-<meta charset="utf-8" />
-<link rel="stylesheet" href="croppie/croppie.css" />
-<script src="croppie/croppie.js"></script>
+  <meta name="google-site-verification" content="466Yz9I6z5_B4IwkmLAXA0XSVH_ombPcy7ZFYY-hy_c" />
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="croppie/croppie.css" />
+  <script src="croppie/croppie.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Lexend Deca&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" />
 
-<link href="https://fonts.googleapis.com/css?family=Lexend Deca&display=swap" rel="stylesheet" />
-<link rel="preconnect" href="https://fonts.gstatic.com/" />
+  <!-- TO-DO LIST -->
+  <!-- zoom tip -->
+  <!-- log for the magic part -->
+  <!--  contact -->
+  <!-- test2 -->
 
-<!-- TO-DO LIST -->
-<!-- zoom tip -->
-<!-- log for the magic part -->
-<!--  contact -->
-<!-- test2 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+  <!-- Primary Meta Tags -->
+  <title>YT To MP3 With Croppable Album Art™</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+  <link rel="manifest" href="/icons/site.webmanifest" />
+  <meta name="title" content="YT To MP3 With Croppable Album Art™" />
+  <meta name="description" content="poggers" />
 
-<!-- Primary Meta Tags -->
-<title>YT To MP3 With Croppable Album Art™</title>
-<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
-<link rel="manifest" href="/icons/site.webmanifest" />
-<meta name="title" content="YT To MP3 With Croppable Album Art™" />
-<meta name="description" content="poggers" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/" />
+  <meta property="og:title" content="YT To MP3 With Croppable Album Art™" />
+  <meta property="og:description" content="poggers" />
+  <meta property="og:image" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/yagoo%20butlerr.png" />
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/" />
-<meta property="og:title" content="YT To MP3 With Croppable Album Art™" />
-<meta property="og:description" content="poggers" />
-<meta property="og:image" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/yagoo%20butlerr.png" />
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/" />
-<meta property="twitter:title" content="YT To MP3 With Croppable Album Art™" />
-<meta property="twitter:description" content="poggers" />
-<meta property="twitter:image" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/yagoo%20butlerr.png" />
-<link rel="stylesheet" href="style.css">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/" />
+  <meta property="twitter:title" content="YT To MP3 With Croppable Album Art™" />
+  <meta property="twitter:description" content="poggers" />
+  <meta property="twitter:image" content="https://yt-to-mp3-with-croppable-album-art.netlify.app/yagoo%20butlerr.png" />
+  <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
-<!-- <script src="bundle.js"></script> -->
-<div id="page">
-  <h3 id="faq" class="btn-open js-modal-open" data-modal-id="modal-id-a">FAQ</h3>
-  <h3 id="about" class="btn-open js-modal-open" data-modal-id="modal-id-b">CREDITS</h3>
-  <h3 id="uptime">SERVER STATUS:</h3>
-  <h3 id="uptime2">CHECKING...</h3>
-</div>
-
-<div id="modal">
-  <div class="modal-wrap js-modal" id="modal-id-a">
-    <div class="modal-inner size-vertical">
-      <div class="modal-head">
-        <h1>FAQ</h1>
-        <button class="btn-close js-modal-close">CLOSE</button>
-      </div>
-      <div class="modal-body">
-        <h2>What is this?</h2>
-        <p>This is <b>Kur0's YT To MP3 With Croppable Album Art™</b>. It's basically what the title says. You give it a link, adjust the cropped album art and the tags, and then press download. Simple as that.</p>
-        
-        <h2>What happens when I press "Download"?</h2>
-        <p>
-          Well, first it uploads the video's URL, cropped album art, and tags to a server I'm running. Then the server downloads the video's Opus audio using
-          <a href="https://youtube-dl.org/" target="_blank">youtube-dl</a> and converts it to V0 VBR MP3 using <a href="https://www.ffmpeg.org/" target="_blank">ffmpeg</a>. The album art and tags are then added to the MP3 using <a href="https://mutagen.readthedocs.io/en/latest/" target="_blank">mutagen</a>. Then the server sends it back to the user.
-        </p>
-		<h2>Can I download multiple songs at the same time?</h2>
-        <p>
-           Yes, but you'll have to open another tab if the current one isn't finished downloading yet. I might change it so you can do it in one tab in the future maybe.
-		</p>
-        <h2>How are you running the server?</h2>
-        <p>
-          I know it's inefficient but the server is running on
-          <a href="https://replit.com/" target="_blank">replit.com</a>. I'm using <a href="https://www.python.org/" target="_blank">Python</a> to code it and the <a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank">Flask</a> module allows me to run the server.
-        </p>
-        <h2>Why does it take so long for it to "do magic"?</h2>
-        <p>(See previous question) It's cause I'm not hosting it myself.</p>
-        <h2>Can I see your code? 👀</h2>
-        <p>uh, sure. it's god awful code so be warned.<br /><a href="https://github.com/jericjan/YTMWCAA-server" target="_blank">the server</a><br /><a href="https://github.com/jericjan/YTMWCAA-site" target="_blank">the site</a><br /><small>(should they be separated? i have no idea how to combine them)</small></p>
-        <h2>Where can I contact you?</h2>
-        <p>Discord: <a href="https://discords.com/bio/p/jamsandwich47" target="_blank">Kur0#5384</a><br />Twitter: <a href="https://twitter.com/CantilJan" target="_blank">CantilJan</a></p>
-      </div>
-    </div>
+  <!-- <script src="bundle.js"></script> -->
+  <div id="page">
+    <h3 id="faq" class="btn-open js-modal-open" data-modal-id="modal-id-a">FAQ</h3>
+    <h3 id="about" class="btn-open js-modal-open" data-modal-id="modal-id-b">CREDITS</h3>
+    <h3 id="uptime">SERVER STATUS:</h3>
+    <h3 id="uptime2">CHECKING...</h3>
   </div>
 
-  <div class="modal-wrap js-modal" id="modal-id-b">
-    <div class="modal-inner size-vertical">
-      <div class="modal-head">
-        <h2>CREDITS</h2>
-        <button class="btn-close js-modal-close">CLOSE</button>
-      </div>
-      <div class="modal-body">
-        <p><a href="https://foliotek.github.io/Croppie/" target="_blank">croppie</a> - Lets me crop the thumbnail</p>
-        <p><a href="https://codepen.io/hnjungElis/pen/ZEyzPbe" target="_blank">jquery Multi Modal Control</a> - These pop up windows</p>
-        <p><a href="https://codepen.io/nourabusoud/pen/ypZzMM" target="_blank">Bubbly Button</a> - the buttons</p>
-        <p><a href="https://codepen.io/evawythien/pen/jegRxN" target="_blank">Progress bar animation</a> - the progress bar at the bottom</p>
-        <p><a href="https://youtube-dl.org/" target="_blank">youtube-dl</a> - For downloading youtube videos</p>
-        <p><a href="https://www.ffmpeg.org/" target="_blank">ffmpeg</a> - for converting files</p>
-        <p><a href="https://mutagen.readthedocs.io/en/latest/" target="_blank">mutagen</a> - for adding tags to audio files</p>
-		<p><a href="https://lokeshdhakar.com/projects/color-thief/" target="_blank">Color Thief</a> - grabbing dominant colors from images</p>
+  <div id="modal">
+    <div class="modal-wrap js-modal" id="modal-id-a">
+      <div class="modal-inner size-vertical">
+        <div class="modal-head">
+          <h1>FAQ</h1>
+          <button class="btn-close js-modal-close">CLOSE</button>
+        </div>
+        <div class="modal-body">
+          <h2>What is this?</h2>
+          <p>This is <b>Kur0's YT To MP3 With Croppable Album Art™</b>. It's basically what the title says. You give it
+            a link, adjust the cropped album art and the tags, and then press download. Simple as that.</p>
 
-        <!-- 				<p><a href='' target='_blank'>
+          <h2>What happens when I press "Download"?</h2>
+          <p>
+            Well, first it uploads the video's URL, cropped album art, and tags to a server I'm running. Then the server
+            downloads the video's Opus audio using
+            <a href="https://youtube-dl.org/" target="_blank">youtube-dl</a> and converts it to V0 VBR MP3 using <a
+              href="https://www.ffmpeg.org/" target="_blank">ffmpeg</a>. The album art and tags are then added to the
+            MP3 using <a href="https://mutagen.readthedocs.io/en/latest/" target="_blank">mutagen</a>. Then the server
+            sends it back to the user.
+          </p>
+          <h2>Can I download multiple songs at the same time?</h2>
+          <p>
+            Yes, but you'll have to open another tab if the current one isn't finished downloading yet. I might change
+            it so you can do it in one tab in the future maybe.
+          </p>
+          <h2>How are you running the server?</h2>
+          <p>
+            I know it's inefficient but the server is running on
+            <a href="https://replit.com/" target="_blank">replit.com</a>. I'm using <a href="https://www.python.org/"
+              target="_blank">Python</a> to code it and the <a href="https://flask.palletsprojects.com/en/2.0.x/"
+              target="_blank">Flask</a> module allows me to run the server.
+          </p>
+          <h2>Why does it take so long for it to "do magic"?</h2>
+          <p>(See previous question) It's cause I'm not hosting it myself.</p>
+          <h2>Can I see your code? 👀</h2>
+          <p>uh, sure. it's god awful code so be warned.<br /><a href="https://github.com/jericjan/YTMWCAA-server"
+              target="_blank">the server</a><br /><a href="https://github.com/jericjan/YTMWCAA-site" target="_blank">the
+              site</a><br /><small>(should they be separated? i have no idea how to combine them)</small></p>
+          <h2>Where can I contact you?</h2>
+          <p>Discord: <a href="https://discords.com/bio/p/jamsandwich47" target="_blank">Kur0#5384</a><br />Twitter: <a
+              href="https://twitter.com/CantilJan" target="_blank">CantilJan</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-wrap js-modal" id="modal-id-b">
+      <div class="modal-inner size-vertical">
+        <div class="modal-head">
+          <h2>CREDITS</h2>
+          <button class="btn-close js-modal-close">CLOSE</button>
+        </div>
+        <div class="modal-body">
+          <p><a href="https://foliotek.github.io/Croppie/" target="_blank">croppie</a> - Lets me crop the thumbnail</p>
+          <p><a href="https://codepen.io/hnjungElis/pen/ZEyzPbe" target="_blank">jquery Multi Modal Control</a> - These
+            pop up windows</p>
+          <p><a href="https://codepen.io/nourabusoud/pen/ypZzMM" target="_blank">Bubbly Button</a> - the buttons</p>
+          <p><a href="https://codepen.io/evawythien/pen/jegRxN" target="_blank">Progress bar animation</a> - the
+            progress bar at the bottom</p>
+          <p><a href="https://youtube-dl.org/" target="_blank">youtube-dl</a> - For downloading youtube videos</p>
+          <p><a href="https://www.ffmpeg.org/" target="_blank">ffmpeg</a> - for converting files</p>
+          <p><a href="https://mutagen.readthedocs.io/en/latest/" target="_blank">mutagen</a> - for adding tags to audio
+            files</p>
+          <p><a href="https://lokeshdhakar.com/projects/color-thief/" target="_blank">Color Thief</a> - grabbing
+            dominant colors from images</p>
+
+          <!-- 				<p><a href='' target='_blank'>
 				<p><a href='' target='_blank'>
 				<p><a href='' target='_blank'>
 				<p><a href='' target='_blank'> -->
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
-<div>
-  <img src="yt2mp3.png" srcset="https://res.cloudinary.com/bananaman/image/upload/c_scale,w_1394/v1630492153/yt2mp3_n2gxyd.png 1394w, https://res.cloudinary.com/bananaman/image/upload/c_scale,w_835/v1630492153/yt2mp3_n2gxyd.png 835w, https://res.cloudinary.com/bananaman/image/upload/c_scale,w_410/v1630492153/yt2mp3_n2gxyd.png 410w, https://res.cloudinary.com/bananaman/image/upload/c_scale,w_147/v1630492153/yt2mp3_n2gxyd.png 147w" sizes="25vw" style="width: 25vw; min-width: 300px; height: auto; aspect-ratio: 1760 / 717" />
-  <h3>YouTube URL</h3>
-  <textarea name="data" id="data" rows="4" cols="50"></textarea><br />
-  <button id="go" class="bubbly-button" onclick="LinkGet(document.getElementById('data'))">GO!</button>
-  <!-- <div id='coolthing'></div> -->
+  <div>
+    <img src="yt2mp3.png"
+      srcset="https://res.cloudinary.com/bananaman/image/upload/c_scale,w_1394/v1630492153/yt2mp3_n2gxyd.png 1394w, https://res.cloudinary.com/bananaman/image/upload/c_scale,w_835/v1630492153/yt2mp3_n2gxyd.png 835w, https://res.cloudinary.com/bananaman/image/upload/c_scale,w_410/v1630492153/yt2mp3_n2gxyd.png 410w, https://res.cloudinary.com/bananaman/image/upload/c_scale,w_147/v1630492153/yt2mp3_n2gxyd.png 147w"
+      sizes="25vw" style="width: 25vw; min-width: 300px; height: auto; aspect-ratio: 1760 / 717" />
+    <h3>YouTube URL</h3>
+    <textarea name="data" id="data" rows="4" cols="50"></textarea><br />
+    <button id="go" class="bubbly-button" onclick="LinkGet(document.getElementById('data'))">GO!</button>
+    <!-- <div id='coolthing'></div> -->
 
-  <!-- <button id="reset" class="bubbly-button" onclick="reset()">Reset</button> -->
+    <!-- <button id="reset" class="bubbly-button" onclick="reset()">Reset</button> -->
 
-  <br />
-</div>
-<div>
-  <img id="first" src="yagoo butlerr.png" style="width: 492px; height: 666px" />
-</div>
-<div>
-  <button id="crop" class="bubbly-button">CROP!</button><br />
-  <img id="final" /><br />
-  <h3>Title</h3>
-  <textarea name="title" id="title" rows="4" cols="50"></textarea><br />
-  <h3>Artist</h3>
-  <textarea name="artist" id="artist" rows="4" cols="50"></textarea><br />
-  <h3>Album</h3>
-  <button id='generate'>Generate from edited tags</button><br />
-  <textarea name="album" id="album" rows="4" cols="50"></textarea><br />
-  <button class="bubbly-button" id="download">Download!</button><br />
-  <div id="status"></div>
-  <div id="log"></div>
-  <div class="container">
-    <div class="progress2 progress-moved">
-      <div class="progress-bar2"></div>
+    <br />
+  </div>
+  <div>
+    <img id="first" src="yagoo butlerr.png" style="width: 492px; height: 666px" />
+  </div>
+  <div>
+    <button id="crop" class="bubbly-button">CROP!</button><br />
+    <img id="final" /><br />
+    <h3>Title</h3>
+    <textarea name="title" id="title" rows="4" cols="50"></textarea><br />
+    <h3>Artist</h3>
+    <textarea name="artist" id="artist" rows="4" cols="50"></textarea><br />
+    <h3>Album</h3>
+    <button id='generate'>Generate from edited tags</button><br />
+    <textarea name="album" id="album" rows="4" cols="50"></textarea><br />
+    <button class="bubbly-button" id="download">Download!</button><br />
+    <div id="status"></div>
+    <div id="log"></div>
+    <div class="container">
+      <div class="progress2 progress-moved">
+        <div class="progress-bar2"></div>
+      </div>
     </div>
   </div>
-</div>
-<div>
-<button class="bubbly-button" id="update-ytdlp">Update server's yt-dlp</button><br />
-<a>↑Click this if the download fails.↑</a>
-<div id="ytdlp-log"></div>
-</div>
+  <div>
+    <button class="bubbly-button" id="update-ytdlp">Update server's yt-dlp</button><br />
+    <a>↑Click this if the download fails.↑</a>
+    <div id="ytdlp-log"></div>
+  </div>
 
-<script src="https://apis.google.com/js/api.js"></script>
-<!-- <script src='ytapi.js'></script> -->
+  <script src="https://apis.google.com/js/api.js"></script>
+  <!-- <script src='ytapi.js'></script> -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-<!-- <script type='text/javascript' src='config.js'></script>  -->
+  <!-- <script type='text/javascript' src='config.js'></script>  -->
 
-<script type='text/javascript' src='script.js'></script> 
+  <script type='text/javascript' src='script.js'></script>
 </body>
+
 </html>
