@@ -555,10 +555,10 @@ window.addEventListener('load', function() {
     } else if (status == "9") {
         var fstatus = "DOWN"
     }
-
+    document.querySelector("#uptime2").innerHTML = fstatus
 })
 
 
 
-document.querySelector("#uptime2").innerHTML = fstatus
+
 
