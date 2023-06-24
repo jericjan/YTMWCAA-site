@@ -23,17 +23,12 @@ function cropImage() {
             format: "png",
             quality: 1
         })
-        .then(function (blob) {
-            //const blobUrl = URL.createObjectURL(blob) // blob is the Blob object
+        .then(function (blob) {            
             document.getElementById("final").src = blob
             window.blob = blob
         })
 }
 function downloadThing() {
-    // const http = new XMLHttpRequest()
-    // http.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/go",false)
-    // http.withCredentials = true
-    // http.send()
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/get_uuid", false);
     xhttp.send();
@@ -42,15 +37,6 @@ function downloadThing() {
     var finaltitle = document.getElementById("title").value.split("\n")[0].trim()
     var finalartist = document.getElementById("artist").value.split("\n")[0].trim()
     var finalalbum = document.getElementById("album").value.split("\n")[0].trim()
-    //	const http = new XMLHttpRequest()
-    //	http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/download?url="+url)
-    //	http.send()
-    // window.open("https://yt2mp3-albumart.jericjanjan.repl.co/download?url="+url+"&img="+document.querySelector("#final").src)
-    // 	var canvasData = blob;
-    //var ajax = new XMLHttpRequest();
-    //ajax.open("POST",'https://yt2mp3-albumart.jericjanjan.repl.co/a');
-    //	ajax.setRequestHeader('Content-Type', 'multipart/form-data');
-    //ajax.send(canvasData);
     var file = document.getElementById("final")
 
     function urltoFile(url, filename, mimeType) {
@@ -85,14 +71,6 @@ function downloadThing() {
             ) /* this checks the flag every 100 milliseconds*/
         } else {
             console.log(fd.get("file"))
-            //      client.open("post",'https://yt2mp3-albumart.jericjanjan.repl.co/download?url='+url+"&author="+finalartist+"&title="+finaltitle+"&album="+finalalbum, true);
-            //  	  client.responseType = 'blob'
-            //  	  client.send(fd);
-            //  	  client.onload = function (e) {
-            //  		var blob = client.response;
-            // 	  console.log(blob)
-            //  	  saveBlob(blob, title+'.mp3');
-            // 	  }
             $.ajax({
                 xhr: function () {
                     var xhr = new window.XMLHttpRequest()
@@ -118,19 +96,6 @@ function downloadThing() {
                                     document.getElementById("status").innerHTML =
                                         "Doing magic... Give it a minute or two."
 
-                                    /* 				  var myVar = setInterval(myTimer, 1000);
-                                                      window.logthing = myVar
-                                                        function myTimer() {
-                                                                http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/log",false) //seems to only work with POSTs not GET, so no more EventSource :(
-                                                                http.withCredentials = true
-                                                                http.send()
-                                                                if (http.response.startsWith('video:0kB ')){
-                                                                    clearInterval(myVar)
-                                                                }else {
-                                                                document.getElementById("log").innerHTML = http.response
-                                                                }
-                                                            	
-                                                        } */
 
 
 
@@ -140,11 +105,7 @@ function downloadThing() {
                                     )
                                     window.evtsource = evtSource
                                     evtSource.onmessage = function (e) {
-                                        //					if (e.data=='DONE!'){
-                                        //						evtSource.close()
-                                        //					}else if (e.data.startsWith("video:0kB")){
-                                        //					document.getElementById('log').innerHTML = "Beep boop...";
-                                        //				}else{
+
                                         if (e.data == "Beep boop...") {
                                             document.getElementById("log").innerHTML = e.data
                                         } else {
@@ -170,8 +131,7 @@ function downloadThing() {
                         "progress",
                         function (evt) {
                             if (evt.lengthComputable) {
-                                evtsource.close()
-                                /*    clearInterval(logthing) */
+                                evtsource.close()                                
                                 document.getElementById("log").innerHTML = ""
                                 var percentComplete = (evt.loaded / evt.total) * 100
                                 // Do something with download progress
@@ -221,9 +181,6 @@ function downloadThing() {
                     saveBlob(blob, title + ".mp3")
                 },
                 error: function (xhr, status, error) {
-                    //	console.log(xhr)
-                    //		console.log(status)
-                    //		console.log(error)
                     var errorMessage = xhr.status + ": " + xhr.statusText
                     document.getElementById("status").innerHTML =
                         errorMessage + " Try again :("
@@ -313,10 +270,6 @@ function LinkGet(val) {
     } else {
         resize.destroy()
     }
-    /*  const http = new XMLHttpRequest()
-            http.open("POST", "https://yt2mp3-albumart.jericjanjan.repl.co/go",false)
-          http.withCredentials = true
-            http.send() */
 
     const colorThief = new ColorThief()
     const img = document.querySelector("#first")
@@ -334,11 +287,6 @@ function LinkGet(val) {
         alert("Not a YouTube URL")
     }
 
-    //const http = new XMLHttpRequest()
-    //http.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+idd+"&key=")
-    //http.send()
-    //console.log(JSON.parse(http.response))
-    //var yt_api_key = config.YT_API_KEY;
     fetch("https://cool-sun-0721.cantilfrederick.workers.dev/" + idd) //proxy that gets data from yt api
         .then(response => response.json())
         .then(json => {
@@ -457,29 +405,6 @@ function LinkGet(val) {
                 json.items[0].snippet.channelTitle + " - " + json.items[0].snippet.title
         })
 }
-// <!-- function reset() { -->
-//   <!-- const http = new XMLHttpRequest() -->
-//   	<!-- http.open("GET", "https://yt2mp3-albumart.jericjanjan.repl.co/reset",false) -->
-//   	<!-- http.send() -->
-//   <!-- resize.destroy() -->
-//   <!-- $("#final").removeAttr("src") -->
-//   <!-- document.querySelector("#first").src = "yagoo butlerr.png" -->
-//   <!-- $("body").animate( -->
-//     <!-- { backgroundColor: "#666" }, -->
-//     <!-- { duration: 1000, queue: false } -->
-//   <!-- ) -->
-//   <!-- $("textarea").animate( -->
-//     <!-- { backgroundColor: "#FFFFFF" }, -->
-//     <!-- { duration: 1000, queue: false } -->
-//   <!-- ) -->
-//   <!-- $("textarea").animate({ color: "#000000" }, { duration: 1000, queue: false }) -->
-//   <!-- $("h3").animate({ color: "#FFFFFF" }, { duration: 1000, queue: false }) -->
-//   <!-- $("div#status").animate( -->
-//     <!-- { color: "#FFFFFF" }, -->
-//     <!-- { duration: 1000, queue: false } -->
-//   <!-- ) -->
-
-// <!-- } -->
 
 document.getElementById("update-ytdlp").onclick = function () {
     document.getElementById("update-ytdlp").disabled = true
