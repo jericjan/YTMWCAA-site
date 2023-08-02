@@ -2,7 +2,7 @@ document.getElementById("crop").onclick = function () {
   cropImage();
 };
 document.getElementById("download").onclick = function () {
-  setTimeout(downloadThing, 0);
+  setTimeout(function(){downloadThing();}, 0);
 };
 document.getElementById("generate").onclick = function () {
   generateAlbum();
@@ -35,17 +35,10 @@ function cropImage() {
     });
 }
 function downloadThing() {
+  var uuid;
   const statusElem = document.getElementById("status")
   statusElem.innerHTML = "Please wait..."
-  var xhttp = new XMLHttpRequest();
-  xhttp.open(
-    "GET",
-    "https://yt2mp3-albumart.jericjanjan.repl.co/get_uuid",
-    false
-  );
-  xhttp.send();
-  var uuid = xhttp.response;
-  console.log("uuid is: " + uuid);
+
   var finaltitle = document.getElementById("title").value.split("\n")[0].trim();
   var finalartist = document
     .getElementById("artist")
@@ -72,108 +65,132 @@ function downloadThing() {
   }
 
   var fd = new FormData();
-  urltoFile(file.src, "img.png", "image/png").then(function (file) {
-    fd.append("file", file);
-    
-    $.ajax({
-      xhr: function () {
-        var xhr = new window.XMLHttpRequest();
-        var evtSource;
 
+  // var xhttp = new XMLHttpRequest();
+  // xhttp.open(
+  //   "GET",
+  //   "https://yt2mp3-albumart.jericjanjan.repl.co/get_uuid",
+  //   false
+  // );
+  // xhttp.send();
+  // var uuid = xhttp.response;
+  // console.log("uuid is: " + uuid);
+  fetch("https://yt2mp3-albumart.jericjanjan.repl.co/get_uuid")
+    .then((e) => e.text())
+    .then((e) => {
+      uuid = e;
+      return urltoFile(file.src, "img.png", "image/png");
+    })
+    .then((file) => {
+      fd.append("file", file);
 
+      $.ajax({
+        xhr: function () {
+          var xhr = new window.XMLHttpRequest();
+          var evtSource;
 
-        // Upload progress
-        xhr.upload.addEventListener(
-          "progress",
-          function (evt) {
-            if (evt.lengthComputable) {              
-              var logElem = document.getElementById("log")
-              
-              var percentComplete = ((evt.loaded / evt.total) * 100).toFixed(1) + "%";
-              //Do something with upload progress
-              console.log(percentComplete, " Upload progress listener triggered.");
-              statusElem.innerHTML = percentComplete + " uploaded";
-              $(".progress-bar2").animate({ width: percentComplete }, 1);
-              if (statusElem.innerHTML == "100.0% uploaded") {
-                statusElem.innerHTML =
-                  "Doing magic... Give it a minute or two.";
-                console.log("100% hit. Starting EventSource");
-                evtSource = new EventSource(
-                  "https://yt2mp3-albumart.jericjanjan.repl.co/log?pogid=" +
-                    uuid,
-                  { withCredentials: true }
+          // Upload progress
+          xhr.upload.addEventListener(
+            "progress",
+            function (evt) {
+              if (evt.lengthComputable) {
+                var logElem = document.getElementById("log");
+
+                var percentComplete =
+                  ((evt.loaded / evt.total) * 100).toFixed(1) + "%";
+                //Do something with upload progress
+                console.log(
+                  percentComplete,
+                  " Upload progress listener triggered."
                 );
-                evtSource.onmessage = function (e) {
-                  console.log("EventSource received a msg");
-                  logElem.innerHTML = e.data;
-                  if (e.data != "Beep boop...") {                    
-                    statusElem.innerHTML = "Processing...";
+                statusElem.innerHTML = percentComplete + " uploaded";
+                $(".progress-bar2").animate({ width: percentComplete }, 1);
+                if (statusElem.innerHTML == "100.0% uploaded") {
+                  statusElem.innerHTML =
+                    "Doing magic... Give it a minute or two.";
+                  console.log("100% hit. Starting EventSource");
+                  evtSource = new EventSource(
+                    "https://yt2mp3-albumart.jericjanjan.repl.co/log?pogid=" +
+                      uuid,
+                    { withCredentials: true }
+                  );
+                  evtSource.onmessage = function (e) {
+                    console.log("EventSource received a msg");
+                    logElem.innerHTML = e.data;
+                    if (e.data != "Beep boop...") {
+                      statusElem.innerHTML = "Processing...";
 
-                    var width = e.data.split("(")[1].split(")")[0];
-                    $(".progress-bar2").animate({ width: width }, 1);
-                    
+                      var width = e.data.split("(")[1].split(")")[0];
+                      $(".progress-bar2").animate({ width: width }, 1);
+                    }
+                  };
+                }
+              }
+            },
+            false
+          );
+
+          // Download progress
+          xhr.addEventListener(
+            "progress",
+            function (evt) {
+              console.log("DL listener triggered!")
+              if (evt.lengthComputable) {
+                try {
+                  evtSource.close();
+                  document.getElementById("log").innerHTML = "";
+                  var percentComplete =
+                    ((evt.loaded / evt.total) * 100).toFixed(1) + "%";
+                  // Do something with download progress
+                  console.log(percentComplete);
+                  var statusElem = document.getElementById("status");
+                  statusElem.innerHTML = percentComplete + " downloaded";
+                  $(".progress-bar2").animate({ width: percentComplete }, 1);
+                  if (statusElem.innerHTML == "100.0% downloaded") {
+                    statusElem.innerHTML = "FINISHED!";
                   }
-                };
-              }
-            }
-          },
-          false
-        );
+                } catch(e) {
+                  console.log("Download err:", e)
 
-        // Download progress
-        xhr.addEventListener(
-          "progress",
-          function (evt) {
-            if (evt.lengthComputable) {
-              evtSource.close();
-              document.getElementById("log").innerHTML = "";
-              var percentComplete = ((evt.loaded / evt.total) * 100).toFixed(1) + "%";
-              // Do something with download progress
-              console.log(percentComplete);
-              var statusElem = document.getElementById("status")
-              statusElem.innerHTML = percentComplete + " downloaded";              
-              $(".progress-bar2").animate({ width: percentComplete }, 1);              
-              if (statusElem.innerHTML =="100.0% downloaded") {
-                statusElem.innerHTML = "FINISHED!";
+                }
               }
-            }
-          },
-          false
-        );
+            },
+            false
+          );
 
-        return xhr;
-      },
-      type: "POST",
-      url:
-        "https://yt2mp3-albumart.jericjanjan.repl.co/download?url=" +
-        window.url +
-        "&author=" +
-        finalartist +
-        "&title=" +
-        finaltitle +
-        "&album=" +
-        finalalbum +
-        "&uuid=" +
-        uuid,
-      data: fd,
-      processData: false,
-      contentType: false,
-      xhrFields: {
-        responseType: "blob",
-        withCredentials: true,
-      },
-      success: function (blob) {
-        console.log(blob);
-        console.log(typeof blob);
-        saveBlob(blob, window.title + ".mp3");
-      },
-      error: function (xhr, status, error) {
-        var errorMessage = xhr.status + ": " + xhr.statusText;
-        document.getElementById("status").innerHTML =
-          errorMessage + " Try again :(";
-      },
+          return xhr;
+        },
+        type: "POST",
+        url:
+          "https://yt2mp3-albumart.jericjanjan.repl.co/download?url=" +
+          window.url +
+          "&author=" +
+          finalartist +
+          "&title=" +
+          finaltitle +
+          "&album=" +
+          finalalbum +
+          "&uuid=" +
+          uuid,
+        data: fd,
+        processData: false,
+        contentType: false,
+        xhrFields: {
+          responseType: "blob",
+          withCredentials: true,
+        },
+        success: function (blob) {
+          console.log(blob);
+          console.log(typeof blob);
+          saveBlob(blob, window.title + ".mp3");
+        },
+        error: function (xhr, status, error) {
+          var errorMessage = xhr.status + ": " + xhr.statusText;
+          document.getElementById("status").innerHTML =
+            errorMessage + " Try again :(";
+        },
+      });
     });
-  });
 
 
 
