@@ -400,15 +400,15 @@ $(".js-modal").on("click", function (e) {
 });
 // ^^ jquery Multi Modal Control - https://codepen.io/hnjungElis/pen/ZEyzPbe
 
-window.addEventListener("load", function() {
-  setTimeout(function () {
-    var http = new XMLHttpRequest();
-    http.open(
-      "POST",
-      "https://api.uptimerobot.com/v2/getMonitors?format=json&api_key=m789063836-d171e621fd1ec06c641b4942",
-      false
-    );
-    http.send();
+function checkServer(){
+  var http = new XMLHttpRequest();
+  http.open(
+    "POST",
+    "https://api.uptimerobot.com/v2/getMonitors?format=json&api_key=m789063836-d171e621fd1ec06c641b4942",
+    false
+  );
+  http.send();
+  try {
     var status = JSON.parse(http.response).monitors[0].status;
     if (status == "0") {
       var fstatus = "PAUSED";
@@ -422,5 +422,13 @@ window.addEventListener("load", function() {
       var fstatus = "DOWN";
     }
     document.querySelector("#uptime2").innerHTML = fstatus;
-  }, 0 )
+  } catch (error) {
+    document.querySelector("#uptime2").innerHTML = "RATE LIMIT. TRYING AGAIN IN 10s";
+    console.log("Uptimerobot error. Trying again: ")
+    setTimeout(checkServer, 10000)
+  }
+}
+
+window.addEventListener("load", function() {
+  setTimeout(checkServer, 0 )
 });
