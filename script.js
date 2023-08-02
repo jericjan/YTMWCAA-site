@@ -145,7 +145,7 @@ function downloadThing() {
       type: "POST",
       url:
         "https://yt2mp3-albumart.jericjanjan.repl.co/download?url=" +
-        url +
+        window.url +
         "&author=" +
         finalartist +
         "&title=" +
@@ -164,7 +164,7 @@ function downloadThing() {
       success: function (blob) {
         console.log(blob);
         console.log(typeof blob);
-        saveBlob(blob, title + ".mp3");
+        saveBlob(blob, window.title + ".mp3");
       },
       error: function (xhr, status, error) {
         var errorMessage = xhr.status + ": " + xhr.statusText;
@@ -222,29 +222,28 @@ function LinkGet(val) {
   const colorThief = new ColorThief();
   const img = document.querySelector("#first");
 
-  var array1 = val.value.split("\n")[0];
-  if (array1.startsWith("https://youtu.be/")) {
-    var idd = array1.split("?")[0].split("/")[
-      array1.split("?")[0].split("/").length - 1
-    ];
-    window.url = array1.split("?")[0];
-  } else if (array1.startsWith("https://www.youtube.com/")) {
-    var idd = array1.split("&")[0].split("=")[1];
-    window.url = array1.split("&")[0];
+  var ytUrl = val.value.split("\n")[0];
+  const ytRegex = /(?<=(https:\/\/youtu\.be\/|https:\/\/www\.youtube\.com\/watch\?v=)).+?(?=&|\?|$)/
+  const isYtUrl = ytRegex.exec(ytUrl);
+
+  if (isYtUrl) {
+    var videoId = isYtUrl[0]
+    window.url = "https://youtu.be/" + videoId
   } else {
     alert("Not a YouTube URL");
+    return;
   }
 
-  fetch("https://cool-sun-0721.cantilfrederick.workers.dev/" + idd) //proxy that gets data from yt api
+  fetch("https://cool-sun-0721.cantilfrederick.workers.dev/" + videoId) //proxy that gets data from yt api
     .then((response) => response.json())
     .then((json) => {
       console.log("parsed json", json); // access json.body here
       var thumbnail_url = json.items[0].snippet.thumbnails;
-      var final_url = thumbnail_url.maxres ? thumbnail_url.maxres.url :
-        thumbnail_url.standard ? thumbnail_url.standard.url :
-        thumbnail_url.high ? thumbnail_url.high.url :
-        thumbnail_url.medium ? thumbnail_url.medium.url :
-        thumbnail_url.default.url
+      var final_url = thumbnail_url.maxres?.url
+        ?? thumbnail_url.standard?.url
+        ?? thumbnail_url.high?.url
+        ?? thumbnail_url.medium?.url
+        ?? thumbnail_url.default.url
       console.log(final_url);
 
       var pic = document.getElementById("first");
@@ -252,16 +251,17 @@ function LinkGet(val) {
       pic.src =
         "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url; // simple cors proxy server
       set_image();
-      window.title = json.items[0].snippet.title;
-      window.author = json.items[0].snippet.channelTitle;
-
-      function addAnims(){
+      window.title = json.items[0].snippet.title;      
+      var artist = json.items[0].snippet.channelTitle
+      function addAnims() {
         function componentToHex(c) {
           var hex = c.toString(16);
           return hex.length == 1 ? "0" + hex : hex;
-        }        
+        }
         function rgbToHex(r, g, b) {
-          return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+          return (
+            "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
+          );
         }
         function invertColor(hex) {
           function padZero(str, len) {
@@ -269,7 +269,7 @@ function LinkGet(val) {
             var zeros = new Array(len).join("0");
             return (zeros + str).slice(-len);
           }
-        
+
           if (hex.indexOf("#") === 0) {
             hex = hex.slice(1);
           }
@@ -288,48 +288,31 @@ function LinkGet(val) {
           return "#" + padZero(r) + padZero(g) + padZero(b);
         }
 
-
         console.log(colorThief.getColor(img));
-        var color = colorThief.getColor(img);
-        var animOptions = { duration: 1000, queue: false }
+        const color = colorThief.getColor(img);
+        const animOptions = { duration: 1000, queue: false };
 
-        $("body").animate(
-          {
-            backgroundColor:
-              `RGB(${color[0]},${color[1]},${color[2]})`,
+        const animList = {
+          body: {
+            backgroundColor: `RGB(${color[0]},${color[1]},${color[2]})`,
           },
-          animOptions
-        );
-        $("textarea").animate(
-          {
+          textarea: {
             backgroundColor: invertColor(
               rgbToHex(color[0], color[1], color[2])
             ),
           },
-          animOptions
-        );
-        $("textarea").animate(
-          { color: `RGB(${color[0]},${color[1]},${color[2]})` },
-          animOptions
-        );
-        $("h3").animate(
-          { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
-          animOptions
-        );
-        $("div#status,div#log").animate(
-          { color: invertColor(rgbToHex(color[0], color[1], color[2])) },
-          animOptions
-        );
-        $("img#final").animate(
-          {
-            "border-color": invertColor(rgbToHex(color[0], color[1], color[2])),
+          "h3,div#status,div#log": {
+            color: invertColor(rgbToHex(color[0], color[1], color[2])),
           },
-          animOptions
-        );
-        $("img#final").animate(
-          { "border-width": "8px" },
-          animOptions
-        );
+          "img#final": {
+            "border-color": invertColor(rgbToHex(color[0], color[1], color[2])),
+            "border-width": "8px",
+          },
+        };
+
+        for (const [elem, animJSON] of Object.entries(animList)) {
+          $(elem).animate(animJSON, animOptions);
+        }
       }
 
       // Make sure image is finished loading
@@ -341,13 +324,9 @@ function LinkGet(val) {
         });
       }
 
-      document.getElementById("title").value = json.items[0].snippet.title;
-      document.getElementById("artist").value =
-        json.items[0].snippet.channelTitle;
-      document.getElementById("album").value =
-        json.items[0].snippet.channelTitle +
-        " - " +
-        json.items[0].snippet.title;
+      document.getElementById("title").value = window.title;
+      document.getElementById("artist").value = artist;
+      document.getElementById("album").value = window.title + " - " + artist;
     });
 }
 
