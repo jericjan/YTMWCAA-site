@@ -2,14 +2,14 @@ document.getElementById("crop").onclick = function () {
   cropImage();
 };
 document.getElementById("download").onclick = function () {
-  downloadThing();
+  setTimeout(downloadThing, 0);
 };
 document.getElementById("generate").onclick = function () {
   generateAlbum();
 };
 
 document.getElementById("go").onclick = function () {
-  LinkGet(document.getElementById('data'));
+  LinkGet();
 };
 
 function generateAlbum() {
@@ -35,6 +35,8 @@ function cropImage() {
     });
 }
 function downloadThing() {
+  const statusElem = document.getElementById("status")
+  statusElem.innerHTML = "Please wait..."
   var xhttp = new XMLHttpRequest();
   xhttp.open(
     "GET",
@@ -86,12 +88,11 @@ function downloadThing() {
           function (evt) {
             if (evt.lengthComputable) {              
               var logElem = document.getElementById("log")
-              var statusElem = document.getElementById("status")
+              
               var percentComplete = ((evt.loaded / evt.total) * 100).toFixed(1) + "%";
               //Do something with upload progress
               console.log(percentComplete, " Upload progress listener triggered.");
-              document.getElementById("status").innerHTML =
-                percentComplete + " uploaded";
+              statusElem.innerHTML = percentComplete + " uploaded";
               $(".progress-bar2").animate({ width: percentComplete }, 1);
               if (statusElem.innerHTML == "100.0% uploaded") {
                 statusElem.innerHTML =
@@ -195,7 +196,8 @@ for (const bubblyButton of bubblyButtons) {
   bubblyButton.addEventListener("click", animateButton, false);
 }
 
-function LinkGet(val) {
+function LinkGet() {
+
   function set_image() {
     var el = document.getElementById("first");
     var resize = new Croppie(el, {
@@ -218,10 +220,11 @@ function LinkGet(val) {
   } else {
     resize.destroy();
   }
-
+  
   const colorThief = new ColorThief();
   const img = document.querySelector("#first");
 
+  const val = document.getElementById('data')
   var ytUrl = val.value.split("\n")[0];
   const ytRegex = /(?<=(https:\/\/youtu\.be\/|https:\/\/www\.youtube\.com\/watch\?v=)).+?(?=&|\?|$)/
   const isYtUrl = ytRegex.exec(ytUrl);
