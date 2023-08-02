@@ -208,7 +208,7 @@ function LinkGet(val) {
       useCORS: true,
     });
     resize.bind({
-      url: el,
+      url: el.src,
     });
     window.resize = resize;
   }
