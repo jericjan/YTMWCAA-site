@@ -235,7 +235,10 @@ function LinkGet() {
   if (window.resize == undefined) {
     console.log("no Croppie yet");
   } else {
-    resize.destroy();
+    // resize.destroy();
+    resize.bind({
+      url: document.getElementById("first").src,
+    });
   }
   
   const colorThief = new ColorThief();
@@ -339,9 +342,9 @@ function LinkGet() {
       if (img.complete) {
         addAnims()
       } else {
-        img.addEventListener("load", function () {
-          addAnims()
-        });
+        img.onload = function () {
+          addAnims();
+        };
       }
 
       document.getElementById("title").value = window.title;
