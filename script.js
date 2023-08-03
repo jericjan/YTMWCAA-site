@@ -281,25 +281,33 @@ function onGo() {
       return "#" + padZero(r) + padZero(g) + padZero(b);
     }
 
+    function getContrastYIQ(hexcolor){
+      // https://hackmd.io/@Markdown-It/HJeV6339X
+      var r = parseInt(hexcolor.substr(0,2),16);
+      var g = parseInt(hexcolor.substr(2,2),16);
+      var b = parseInt(hexcolor.substr(4,2),16);
+      var yiq = ((r*299)+(g*587)+(b*114))/1000;
+      return (yiq >= 128) ? 'black' : 'white';
+    }
+
     console.log(colorThief.getColor(img));
     const color = colorThief.getColor(img);
     const animOptions = { duration: 1000, queue: false };
-
+    const normalColor = `RGB(${color[0]},${color[1]},${color[2]})`
+    const invertedColor = invertColor(rgbToHex(color[0], color[1], color[2]))
     const animList = {
       body: {
-        backgroundColor: `RGB(${color[0]},${color[1]},${color[2]})`,
+        backgroundColor: normalColor,
       },
       textarea: {
-        backgroundColor: invertColor(
-          rgbToHex(color[0], color[1], color[2])
-        ),
-        color: `RGB(${color[0]},${color[1]},${color[2]})` 
+        backgroundColor: invertedColor,
+        color: getContrastYIQ(invertedColor),
       },
       "h3,div#status,div#log": {
-        color: invertColor(rgbToHex(color[0], color[1], color[2])),
+        color: getContrastYIQ(normalColor),
       },
       "img#final": {
-        "border-color": invertColor(rgbToHex(color[0], color[1], color[2])),
+        "border-color": invertedColor,
         "border-width": "8px",
       },
     };
