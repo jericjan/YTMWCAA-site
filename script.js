@@ -85,15 +85,6 @@ function downloadThing() {
 
   var fd = new FormData();
 
-  // var xhttp = new XMLHttpRequest();
-  // xhttp.open(
-  //   "GET",
-  //   "https://yt2mp3-albumart.jericjanjan.repl.co/get_uuid",
-  //   false
-  // );
-  // xhttp.send();
-  // var uuid = xhttp.response;
-  // console.log("uuid is: " + uuid);
   fetch("https://yt2mp3-albumart.jericjanjan.repl.co/get_uuid")
     .then((e) => e.text())
     .then((e) => {
@@ -210,9 +201,6 @@ function downloadThing() {
         },
       });
     });
-
-
-
 }
 
 var animateButton = function (e) {
@@ -234,7 +222,7 @@ for (const bubblyButton of bubblyButtons) {
 
 function onGo() {
 
-  function set_image(imgUrl)  {
+  function setCroppieImg(imgUrl)  {
     if (resize != undefined){
       console.log("Destroying old Croppie")
       resize.destroy();
@@ -254,6 +242,83 @@ function onGo() {
       url: imgUrl,
     }).then((e)=>{
       console.log(`Binded ${imgUrl.slice(0, 10)}... to ${e}`)
+    });
+
+  }
+
+  function addAnims() {
+    function componentToHex(c) {
+      var hex = c.toString(16);
+      return hex.length == 1 ? "0" + hex : hex;
+    }
+    function rgbToHex(r, g, b) {
+      return (
+        "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
+      );
+    }
+    function invertColor(hex) {
+      function padZero(str, len) {
+        len = len || 2;
+        var zeros = new Array(len).join("0");
+        return (zeros + str).slice(-len);
+      }
+
+      if (hex.indexOf("#") === 0) {
+        hex = hex.slice(1);
+      }
+      // convert 3-digit hex to 6-digits.
+      if (hex.length === 3) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+      }
+      if (hex.length !== 6) {
+        throw new Error("Invalid HEX color.");
+      }
+      // invert color components
+      var r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
+        g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
+        b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16);
+      // pad each with zeros and return
+      return "#" + padZero(r) + padZero(g) + padZero(b);
+    }
+
+    console.log(colorThief.getColor(img));
+    const color = colorThief.getColor(img);
+    const animOptions = { duration: 1000, queue: false };
+
+    const animList = {
+      body: {
+        backgroundColor: `RGB(${color[0]},${color[1]},${color[2]})`,
+      },
+      textarea: {
+        backgroundColor: invertColor(
+          rgbToHex(color[0], color[1], color[2])
+        ),
+        color: `RGB(${color[0]},${color[1]},${color[2]})` 
+      },
+      "h3,div#status,div#log": {
+        color: invertColor(rgbToHex(color[0], color[1], color[2])),
+      },
+      "img#final": {
+        "border-color": invertColor(rgbToHex(color[0], color[1], color[2])),
+        "border-width": "8px",
+      },
+    };
+
+    for (const [elem, animJSON] of Object.entries(animList)) {
+      $(elem).animate(animJSON, animOptions);
+    }
+  }
+
+  function setElemImg(imgUrl) {
+    return new Promise((resolve, reject) => {
+      const pic = document.getElementById("first");
+      pic.crossOrigin = "Anonymous";
+      pic.onload = function () {
+        addAnims();
+        setCroppieImg(imgUrl);
+        resolve();
+      };
+      pic.src = imgUrl;
     });
   }
 
@@ -285,115 +350,17 @@ function onGo() {
         ?? thumbnail_url.default.url
       console.log(final_url);
 
-      if (loadingImg){        
-        var pic = document.getElementById("first");
-        pic.crossOrigin = "Anonymous";   
-        pic.onload = function () {
-          set_image(loadingImg);
-        };        
-        pic.src = loadingImg;     
+      if (loadingImg){      
+        setElemImg(loadingImg)   
       }
       
-      window.title = json.items[0].snippet.title;      
-      var artist = json.items[0].snippet.channelTitle
-      function addAnims() {
-        function componentToHex(c) {
-          var hex = c.toString(16);
-          return hex.length == 1 ? "0" + hex : hex;
-        }
-        function rgbToHex(r, g, b) {
-          return (
-            "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
-          );
-        }
-        function invertColor(hex) {
-          function padZero(str, len) {
-            len = len || 2;
-            var zeros = new Array(len).join("0");
-            return (zeros + str).slice(-len);
-          }
-
-          if (hex.indexOf("#") === 0) {
-            hex = hex.slice(1);
-          }
-          // convert 3-digit hex to 6-digits.
-          if (hex.length === 3) {
-            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-          }
-          if (hex.length !== 6) {
-            throw new Error("Invalid HEX color.");
-          }
-          // invert color components
-          var r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
-            g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
-            b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16);
-          // pad each with zeros and return
-          return "#" + padZero(r) + padZero(g) + padZero(b);
-        }
-
-        console.log(colorThief.getColor(img));
-        const color = colorThief.getColor(img);
-        const animOptions = { duration: 1000, queue: false };
-
-        const animList = {
-          body: {
-            backgroundColor: `RGB(${color[0]},${color[1]},${color[2]})`,
-          },
-          textarea: {
-            backgroundColor: invertColor(
-              rgbToHex(color[0], color[1], color[2])
-            ),
-            color: `RGB(${color[0]},${color[1]},${color[2]})` 
-          },
-          "h3,div#status,div#log": {
-            color: invertColor(rgbToHex(color[0], color[1], color[2])),
-          },
-          "img#final": {
-            "border-color": invertColor(rgbToHex(color[0], color[1], color[2])),
-            "border-width": "8px",
-          },
-        };
-
-        for (const [elem, animJSON] of Object.entries(animList)) {
-          $(elem).animate(animJSON, animOptions);
-        }
-      }
-
-      // function onImgLoad(url){
-      //   set_image(false, url);
-      //   addAnims();
-      // }
-
-      // var pic = document.getElementById("first");
-      // pic.crossOrigin = "Anonymous";
-      // pic.src =
-      //   "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url; // simple cors proxy server
-
-
-
       fetch("https://kur0-free-cors.deno.dev/?" + final_url)
         .then((e) => e.blob())
         .then((blob) => blobToBase64(blob))
-        .then((b64Url) => {
-          // const blobUrl = URL.createObjectURL(blob)
-          var pic = document.getElementById("first");
-          pic.crossOrigin = "Anonymous";
+        .then((b64Url) => setElemImg(b64Url));
 
-          pic.onload = function () {
-            addAnims();
-            set_image(b64Url);
-          };
-          pic.src = b64Url;
-        });
-
-      // Make sure image is finished loading
-      // if (img.complete) {
-      //   onImgLoad();
-      // } else {
-      //   img.onload = function () {
-      //     onImgLoad();
-      //   };
-      // }
+      window.title = json.items[0].snippet.title;      
+      var artist = json.items[0].snippet.channelTitle
 
       document.getElementById("title").value = window.title;
       document.getElementById("artist").value = artist;
