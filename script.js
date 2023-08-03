@@ -360,23 +360,14 @@ function LinkGet() {
       }
 
       fetch("https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url)
-        .then((e) => e.blob())
-        .then((blob) => {
-          const blobUrl = URL.createObjectURL(blob);
-
-          set_image(false, blobUrl);
-
-          return new Promise((res, rej) => {
-            res(blob);
-          });
-        })
-        .then((blob) => blobToBase64(blob))
-        .then((B64Url) => {
-          var pic = document.getElementById("first");
-          pic.crossOrigin = "Anonymous";
-          pic.src = B64Url;
-          addAnims();
-        });
+      .then(e => e.blob())
+      .then(blob => {
+        const blobUrl = URL.createObjectURL(blob)
+        var pic = document.getElementById("first");
+        pic.crossOrigin = "Anonymous";
+        pic.src = document
+        onImgLoad(blobUrl);
+      })
 
       // Make sure image is finished loading
       // if (img.complete) {
