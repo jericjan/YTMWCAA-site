@@ -351,13 +351,13 @@ function LinkGet() {
       // pic.src =
       //   "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url; // simple cors proxy server
 
-      function blobToBase64(blob) {
-        return new Promise((resolve, _) => {
-          const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result);
-          reader.readAsDataURL(blob);
-        });
-      }
+      // function blobToBase64(blob) {
+      //   return new Promise((resolve, _) => {
+      //     const reader = new FileReader();
+      //     reader.onloadend = () => resolve(reader.result);
+      //     reader.readAsDataURL(blob);
+      //   });
+      // }
 
       fetch("https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url)
       .then(e => e.blob())
@@ -365,8 +365,13 @@ function LinkGet() {
         const blobUrl = URL.createObjectURL(blob)
         var pic = document.getElementById("first");
         pic.crossOrigin = "Anonymous";
-        pic.src = document
-        onImgLoad(blobUrl);
+        
+        set_image(false, blobUrl);
+
+        pic.onload = function () {
+          addAnims();
+        };
+        pic.src = blobUrl        
       })
 
       // Make sure image is finished loading
