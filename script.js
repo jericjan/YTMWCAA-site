@@ -230,8 +230,8 @@ function LinkGet() {
       console.log("Destroying old Croppie")
       window.resize.destroy();
     }
-    var el = document.getElementById("first");
-    var resize = new Croppie(el, {
+    const el = document.getElementById("first");
+    const resize = new Croppie(el, {
       viewport: { width: 200, height: 200 },
       boundary: { width: 600, height: 600 },
       showZoomer: true,
