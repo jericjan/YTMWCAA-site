@@ -216,6 +216,10 @@ for (const bubblyButton of bubblyButtons) {
 function LinkGet() {
 
   function set_image() {
+    if (window.resize != undefined){
+      console.log("Destroying old Croppie")
+      window.resize.destroy();
+    }
     var el = document.getElementById("first");
     var resize = new Croppie(el, {
       viewport: { width: 200, height: 200 },
@@ -232,12 +236,6 @@ function LinkGet() {
     window.resize = resize;
   }
 
-  if (window.resize == undefined) {
-    console.log("no Croppie yet");
-  } else {
-    resize.destroy();
-  }
-  
   const colorThief = new ColorThief();
   const img = document.querySelector("#first");
 
