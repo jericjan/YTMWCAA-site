@@ -199,32 +199,38 @@ body, button {font-family: Lexend Deca; color: #666;}
 .js-modal {display: none;}
 .js-modal.js-is-active {display: block;}
 
-.black[type='range']::-webkit-slider-runnable-track {
+.black[type='range']::-webkit-slider-runnable-track,
+.black[type='range']::-webkit-slider-thumb {
   background: black;
   transition: background 1s;
 }
 
-.black[type="range"]::-moz-range-track {
+.black[type="range"]::-moz-range-track,
+.black[type="range"]::-moz-range-thumb {
   background: black;
   transition: background 1s;
 }
 
-.black[type="range"]::-ms-track {
+.black[type="range"]::-ms-track,
+.black[type="range"]::-ms-thumb {
   background: black;
   transition: background 1s;
 }
 
-.white[type='range']::-webkit-slider-runnable-track {
+.white[type='range']::-webkit-slider-runnable-track,
+.white[type='range']::-webkit-slider-thumb {
   background: white;
   transition: background 1s;
 }
 
-.white[type="range"]::-moz-range-track {
+.white[type="range"]::-moz-range-track,
+.white[type="range"]::-moz-range-thumb {
   background: white;
   transition: background 1s;
 }
 
-.white[type="range"]::-ms-track {
+.white[type="range"]::-ms-track,
+.white[type="range"]::-ms-thumb {
   background: white;
   transition: background 1s;
 }

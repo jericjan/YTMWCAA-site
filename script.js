@@ -307,7 +307,7 @@ function onGo() {
         backgroundColor: invertedColor,
         color: getContrastYIQ(invertedColor),
       },
-      "h3,div#status,div#log": {
+      "h3, .contrastBody": {
         color: getContrastYIQ(normalColor),
       },
       "img#final": {
