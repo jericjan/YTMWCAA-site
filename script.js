@@ -293,8 +293,8 @@ function onGo() {
     console.log(colorThief.getColor(img));
     const color = colorThief.getColor(img);
     const animOptions = { duration: 1000, queue: false };
-    const normalColor = `RGB(${color[0]},${color[1]},${color[2]})`
-    const invertedColor = invertColor(rgbToHex(color[0], color[1], color[2]))
+    const normalColor = rgbToHex(...color)
+    const invertedColor = invertColor(rgbToHex(...color))
     const animList = {
       body: {
         backgroundColor: normalColor,
