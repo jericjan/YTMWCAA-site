@@ -27,6 +27,8 @@ fetch("loading.png")
   .then((blob) => blobToBase64(blob))
   .then((b64) => {
     loadingImg = b64;
+  }).catch(error => {
+    alert('Fetching loading.png failed.');
   });
 
 
@@ -200,6 +202,8 @@ function downloadThing() {
             errorMessage + " Try again :(";
         },
       });
+    }).catch(error => {
+      alert('Fetching UUID failed.');
     });
 }
 
@@ -377,7 +381,10 @@ function onGo() {
       fetch("https://kur0-free-cors.deno.dev/?" + final_url)
         .then((e) => e.blob())
         .then((blob) => blobToBase64(blob))
-        .then((b64Url) => setElemImg(b64Url));
+        .then((b64Url) => setElemImg(b64Url))
+        .catch(error => {
+          alert('Fetching thumbnail image failed.');
+        });
 
       window.title = json.items[0].snippet.title;      
       var artist = json.items[0].snippet.channelTitle
@@ -385,6 +392,8 @@ function onGo() {
       document.getElementById("title").value = window.title;
       document.getElementById("artist").value = artist;
       document.getElementById("album").value = window.title + " - " + artist;
+    }).catch(error => {
+      alert('Fetching YT API failed.');
     });
 }
 
