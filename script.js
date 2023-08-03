@@ -326,14 +326,15 @@ function onGo() {
     
   }
 
-  function setElemImg(imgUrl) {
+  function setElemImg(imgUrl, animate = true) {
     return new Promise((resolve, reject) => {
       const pic = document.getElementById("first");
       pic.crossOrigin = "Anonymous";
       pic.onload = function () {
-        
         setCroppieImg(imgUrl).then(() => {
-          addAnims();
+          if (animate) {
+            addAnims();
+          }
         });
         resolve();
       };
@@ -370,7 +371,7 @@ function onGo() {
       console.log(final_url);
 
       if (loadingImg){      
-        setElemImg(loadingImg)   
+        setElemImg(loadingImg, false)   
       }
       
       fetch("https://kur0-free-cors.deno.dev/?" + final_url)
