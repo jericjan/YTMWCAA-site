@@ -273,7 +273,7 @@ function LinkGet() {
     return;
   }
 
-  fetch("https://cool-sun-0721.cantilfrederick.workers.dev/" + videoId) //proxy that gets data from yt api
+  fetch("https://kur0-yt-api.deno.dev/" + videoId) //proxy that gets data from yt api
     .then((response) => response.json())
     .then((json) => {
       console.log("parsed json", json); // access json.body here
