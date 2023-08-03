@@ -285,10 +285,12 @@ function LinkGet() {
         ?? thumbnail_url.default.url
       console.log(final_url);
 
-      if (loadingImg){
-        set_image(loadingImg);
+      if (loadingImg){        
         var pic = document.getElementById("first");
         pic.crossOrigin = "Anonymous";   
+        pic.onload = function () {
+          set_image(loadingImg);
+        };        
         pic.src = loadingImg;     
       }
       
