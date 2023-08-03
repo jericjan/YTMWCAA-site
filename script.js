@@ -275,7 +275,7 @@ function LinkGet() {
       console.log(final_url);
 
 
-      // set_image(true);
+      set_image(true);
       window.title = json.items[0].snippet.title;      
       var artist = json.items[0].snippet.channelTitle
       function addAnims() {
