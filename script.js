@@ -249,11 +249,11 @@ function LinkGet() {
       mouseWheelZoom: "ctrl",
       useCORS: true,
     });
-    console.log(`Binding ${imgUrl}`)
+    console.log(`Binding ${imgUrl.slice(0, 10)}...`)
     resize.bind({
       url: imgUrl,
     }).then((e)=>{
-      console.log(`Binded ${imgUrl} to ${e}`)
+      console.log(`Binded ${imgUrl.slice(0, 10)}... to ${e}`)
     });
   }
 
@@ -287,6 +287,9 @@ function LinkGet() {
 
       if (loadingImg){
         set_image(loadingImg);
+        var pic = document.getElementById("first");
+        pic.crossOrigin = "Anonymous";   
+        pic.src = loadingImg;     
       }
       
       window.title = json.items[0].snippet.title;      
