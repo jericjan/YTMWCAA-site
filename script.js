@@ -371,7 +371,7 @@ function LinkGet() {
 
 
 
-      fetch("https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url)
+      fetch("https://kur0-free-cors.deno.dev/?" + final_url)
         .then((e) => e.blob())
         .then((blob) => blobToBase64(blob))
         .then((b64Url) => {
