@@ -12,6 +12,9 @@ document.getElementById("go").onclick = function () {
   LinkGet();
 };
 
+const loadingImage = new Image()
+loadingImage.src = "loading.png"
+
 function generateAlbum() {
   var finaltitle = document.getElementById("title").value.split("\n")[0].trim();
   var finalartist = document
@@ -215,7 +218,7 @@ for (const bubblyButton of bubblyButtons) {
 
 function LinkGet() {
 
-  function set_image() {
+  function set_image(loading) {
     if (window.resize != undefined){
       console.log("Destroying old Croppie")
       window.resize.destroy();
@@ -231,7 +234,7 @@ function LinkGet() {
       useCORS: true,
     });
     resize.bind({
-      url: el.src,
+      url: loading ? loadingImage.src : el.src,
     });
     window.resize = resize;
   }
@@ -268,7 +271,7 @@ function LinkGet() {
       pic.crossOrigin = "Anonymous";
       pic.src =
         "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url; // simple cors proxy server
-      set_image();
+      set_image(true);
       window.title = json.items[0].snippet.title;      
       var artist = json.items[0].snippet.channelTitle
       function addAnims() {
@@ -318,6 +321,7 @@ function LinkGet() {
             backgroundColor: invertColor(
               rgbToHex(color[0], color[1], color[2])
             ),
+            color: `RGB(${color[0]},${color[1]},${color[2]})` 
           },
           "h3,div#status,div#log": {
             color: invertColor(rgbToHex(color[0], color[1], color[2])),
@@ -333,12 +337,17 @@ function LinkGet() {
         }
       }
 
+      function onImgLoad(){
+        set_image(false);
+        addAnims();
+      }
+
       // Make sure image is finished loading
       if (img.complete) {
-        addAnims()
+        onImgLoad();
       } else {
         img.onload = function () {
-          addAnims();
+          onImgLoad();
         };
       }
 
