@@ -315,7 +315,11 @@ function onGo() {
     for (const [elem, animJSON] of Object.entries(animList)) {
       $(elem).animate(animJSON, animOptions);
     }
-    $(".cr-slider").attr('data-color',invertedColor);
+
+    $(".cr-slider")
+      .removeClass("black white")
+      .addClass(getContrastYIQ(normalColor));
+    
   }
 
   function setElemImg(imgUrl) {
