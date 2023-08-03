@@ -365,11 +365,10 @@ function LinkGet() {
         const blobUrl = URL.createObjectURL(blob)
         var pic = document.getElementById("first");
         pic.crossOrigin = "Anonymous";
-        
-        set_image(false, blobUrl);
-
+              
         pic.onload = function () {
           addAnims();
+          set_image(false, blobUrl);
         };
         pic.src = blobUrl        
       })
