@@ -235,16 +235,7 @@ function LinkGet() {
   if (window.resize == undefined) {
     console.log("no Croppie yet");
   } else {
-    // resize.destroy();
-    resize
-      .bind({
-        url: "",
-      })
-      .then(() => {
-        resize.bind({
-          url: document.getElementById("first").src,
-        });
-      });
+    resize.destroy();
   }
   
   const colorThief = new ColorThief();
