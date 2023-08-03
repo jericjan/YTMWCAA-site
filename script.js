@@ -12,8 +12,15 @@ document.getElementById("go").onclick = function () {
   LinkGet();
 };
 
-const loadingImage = new Image()
-loadingImage.src = "loading.png"
+window.loadingImg = "loading.png"
+
+fetch("loading.png")
+  .then((e) => e.blob())
+  .then((e) => {
+    window.loadingImg = URL.createObjectURL(e);
+  });
+
+
 
 function generateAlbum() {
   var finaltitle = document.getElementById("title").value.split("\n")[0].trim();
@@ -218,7 +225,7 @@ for (const bubblyButton of bubblyButtons) {
 
 function LinkGet() {
 
-  function set_image(loading) {
+  function set_image(loading, imgUrl)  {
     if (window.resize != undefined){
       console.log("Destroying old Croppie")
       window.resize.destroy();
@@ -234,7 +241,7 @@ function LinkGet() {
       useCORS: true,
     });
     resize.bind({
-      url: loading ? loadingImage.src : el.src,
+      url: loading ? window.loadingImg : imgUrl,
     });
     window.resize = resize;
   }
@@ -267,10 +274,7 @@ function LinkGet() {
         ?? thumbnail_url.default.url
       console.log(final_url);
 
-      var pic = document.getElementById("first");
-      pic.crossOrigin = "Anonymous";
-      pic.src =
-        "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url; // simple cors proxy server
+
       set_image(true);
       window.title = json.items[0].snippet.title;      
       var artist = json.items[0].snippet.channelTitle
@@ -337,19 +341,51 @@ function LinkGet() {
         }
       }
 
-      function onImgLoad(){
-        set_image(false);
-        addAnims();
+      // function onImgLoad(url){
+      //   set_image(false, url);
+      //   addAnims();
+      // }
+
+      // var pic = document.getElementById("first");
+      // pic.crossOrigin = "Anonymous";
+      // pic.src =
+      //   "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url; // simple cors proxy server
+
+      function blobToBase64(blob) {
+        return new Promise((resolve, _) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.readAsDataURL(blob);
+        });
       }
 
+      fetch("https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url)
+        .then((e) => e.blob())
+        .then((blob) => {
+          const blobUrl = URL.createObjectURL(blob);
+
+          set_image(false, blobUrl);
+
+          return new Promise((res, rej) => {
+            res(blob);
+          });
+        })
+        .then((blob) => blobToBase64(blob))
+        .then((B64Url) => {
+          var pic = document.getElementById("first");
+          pic.crossOrigin = "Anonymous";
+          pic.src = B64Url;
+          addAnims();
+        });
+
       // Make sure image is finished loading
-      if (img.complete) {
-        onImgLoad();
-      } else {
-        img.onload = function () {
-          onImgLoad();
-        };
-      }
+      // if (img.complete) {
+      //   onImgLoad();
+      // } else {
+      //   img.onload = function () {
+      //     onImgLoad();
+      //   };
+      // }
 
       document.getElementById("title").value = window.title;
       document.getElementById("artist").value = artist;
