@@ -9,7 +9,7 @@ document.getElementById("generate").onclick = function () {
 };
 
 document.getElementById("go").onclick = function () {
-  LinkGet();
+  onGo();
 };
 
 function blobToBase64(blob) {
@@ -232,7 +232,7 @@ for (const bubblyButton of bubblyButtons) {
   bubblyButton.addEventListener("click", animateButton, false);
 }
 
-function LinkGet() {
+function onGo() {
 
   function set_image(imgUrl)  {
     if (resize != undefined){
@@ -475,10 +475,10 @@ function checkServer(){
   } catch (error) {
     document.querySelector("#uptime2").innerHTML = "RATE LIMIT. TRYING AGAIN IN 10s";
     console.log("Uptimerobot error. Trying again: ")
-    setTimeout(checkServer, 10000)
+    setTimeout(function(){checkServer();}, 0 )
   }
 }
 
 window.addEventListener("load", function() {
-  setTimeout(checkServer, 0 )
+  setTimeout(function(){checkServer();}, 0 )
 });
