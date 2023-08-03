@@ -12,12 +12,21 @@ document.getElementById("go").onclick = function () {
   LinkGet();
 };
 
-window.loadingImg = "loading.png"
+function blobToBase64(blob) {
+  return new Promise((resolve, _) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(blob);
+  });
+}
 
+let loadingImg;
+let resize;
 fetch("loading.png")
   .then((e) => e.blob())
-  .then((e) => {
-    window.loadingImg = URL.createObjectURL(e);
+  .then((blob) => blobToBase64(blob))
+  .then((b64) => {
+    loadingImg = b64;
   });
 
 
@@ -225,13 +234,13 @@ for (const bubblyButton of bubblyButtons) {
 
 function LinkGet() {
 
-  function set_image(loading, imgUrl)  {
-    if (window.resize != undefined){
+  function set_image(imgUrl)  {
+    if (resize != undefined){
       console.log("Destroying old Croppie")
-      window.resize.destroy();
+      resize.destroy();
     }
     const el = document.getElementById("first");
-    const resize = new Croppie(el, {
+    resize = new Croppie(el, {
       viewport: { width: 200, height: 200 },
       boundary: { width: 600, height: 600 },
       showZoomer: true,
@@ -240,10 +249,12 @@ function LinkGet() {
       mouseWheelZoom: "ctrl",
       useCORS: true,
     });
+    console.log(`Binding ${imgUrl}`)
     resize.bind({
-      url: loading ? window.loadingImg : imgUrl,
+      url: imgUrl,
+    }).then((e)=>{
+      console.log(`Binded ${imgUrl} to ${e}`)
     });
-    window.resize = resize;
   }
 
   const colorThief = new ColorThief();
@@ -274,8 +285,10 @@ function LinkGet() {
         ?? thumbnail_url.default.url
       console.log(final_url);
 
-
-      set_image(true);
+      if (loadingImg){
+        set_image(loadingImg);
+      }
+      
       window.title = json.items[0].snippet.title;      
       var artist = json.items[0].snippet.channelTitle
       function addAnims() {
@@ -351,27 +364,22 @@ function LinkGet() {
       // pic.src =
       //   "https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url; // simple cors proxy server
 
-      // function blobToBase64(blob) {
-      //   return new Promise((resolve, _) => {
-      //     const reader = new FileReader();
-      //     reader.onloadend = () => resolve(reader.result);
-      //     reader.readAsDataURL(blob);
-      //   });
-      // }
+
 
       fetch("https://quiet-sun-6d6e.cantilfrederick.workers.dev/?" + final_url)
-      .then(e => e.blob())
-      .then(blob => {
-        const blobUrl = URL.createObjectURL(blob)
-        var pic = document.getElementById("first");
-        pic.crossOrigin = "Anonymous";
-        
-        pic.onload = function () {
-          addAnims();
-          set_image(false, blobUrl);  
-        };
-        pic.src = blobUrl 
-      })
+        .then((e) => e.blob())
+        .then((blob) => blobToBase64(blob))
+        .then((b64Url) => {
+          // const blobUrl = URL.createObjectURL(blob)
+          var pic = document.getElementById("first");
+          pic.crossOrigin = "Anonymous";
+
+          pic.onload = function () {
+            addAnims();
+            set_image(b64Url);
+          };
+          pic.src = b64Url;
+        });
 
       // Make sure image is finished loading
       // if (img.complete) {
