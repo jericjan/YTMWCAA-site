@@ -309,20 +309,13 @@ function onGo() {
       "img#final": {
         "border-color": invertedColor,
         "border-width": "8px",
-      },
-      'input[type="range"]::-webkit-slider-thumb,\
-      input[type="range"]::-moz-range-thumb,\
-      input[type="range"]::-ms-thumb,\
-      input[type="range"]::-webkit-slider-runnable-track,\
-      input[type="range"]::-moz-range-track,\
-      input[type="range"]::-ms-track': {
-        backgroundColor: invertedColor
       }
     };
 
     for (const [elem, animJSON] of Object.entries(animList)) {
       $(elem).animate(animJSON, animOptions);
     }
+    $(".cr-slider").attr('data-color',invertedColor);
   }
 
   function setElemImg(imgUrl) {

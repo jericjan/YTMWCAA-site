@@ -199,3 +199,11 @@ body, button {font-family: Lexend Deca; color: #666;}
 .js-modal {display: none;}
 .js-modal.js-is-active {display: block;}
 
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-moz-range-thumb,
+input[type="range"]::-ms-thumb,
+input[type="range"]::-webkit-slider-runnable-track,
+input[type="range"]::-moz-range-track,
+input[type="range"]::-ms-track {
+    background: attr(data-color);
+}
