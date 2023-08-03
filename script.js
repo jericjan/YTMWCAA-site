@@ -223,27 +223,31 @@ for (const bubblyButton of bubblyButtons) {
 function onGo() {
 
   function setCroppieImg(imgUrl)  {
-    if (resize != undefined){
-      console.log("Destroying old Croppie")
-      resize.destroy();
-    }
-    const el = document.getElementById("first");
-    resize = new Croppie(el, {
-      viewport: { width: 200, height: 200 },
-      boundary: { width: 600, height: 600 },
-      showZoomer: true,
-      enableResize: false,
-      enableOrientation: true,
-      mouseWheelZoom: "ctrl",
-      useCORS: true,
+    return new Promise((resolve, reject) => {
+      if (resize != undefined) {
+        console.log("Destroying old Croppie");
+        resize.destroy();
+      }
+      const el = document.getElementById("first");
+      resize = new Croppie(el, {
+        viewport: { width: 200, height: 200 },
+        boundary: { width: 600, height: 600 },
+        showZoomer: true,
+        enableResize: false,
+        enableOrientation: true,
+        mouseWheelZoom: "ctrl",
+        useCORS: true,
+      });
+      console.log(`Binding ${imgUrl.slice(0, 10)}...`);
+      resize
+        .bind({
+          url: imgUrl,
+        })
+        .then((e) => {
+          console.log(`Binded ${imgUrl.slice(0, 10)}... to ${e}`);
+          resolve()
+        });
     });
-    console.log(`Binding ${imgUrl.slice(0, 10)}...`)
-    resize.bind({
-      url: imgUrl,
-    }).then((e)=>{
-      console.log(`Binded ${imgUrl.slice(0, 10)}... to ${e}`)
-    });
-
   }
 
   function addAnims() {
@@ -327,8 +331,10 @@ function onGo() {
       const pic = document.getElementById("first");
       pic.crossOrigin = "Anonymous";
       pic.onload = function () {
-        addAnims();
-        setCroppieImg(imgUrl);
+        
+        setCroppieImg(imgUrl).then(() => {
+          addAnims();
+        });
         resolve();
       };
       pic.src = imgUrl;
