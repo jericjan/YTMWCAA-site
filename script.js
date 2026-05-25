@@ -459,35 +459,3 @@ $(".js-modal").on("click", function (e) {
 });
 // ^^ jquery Multi Modal Control - https://codepen.io/hnjungElis/pen/ZEyzPbe
 
-function checkServer(){
-  var http = new XMLHttpRequest();
-  http.open(
-    "POST",
-    "https://api.uptimerobot.com/v2/getMonitors?format=json&api_key=m789063836-d171e621fd1ec06c641b4942",
-    false
-  );
-  http.send();
-  try {
-    var status = JSON.parse(http.response).monitors[0].status;
-    if (status == "0") {
-      var fstatus = "PAUSED";
-    } else if (status == "1") {
-      var fstatus = "NOT CHECKED YET";
-    } else if (status == "2") {
-      var fstatus = "UP";
-    } else if (status == "8") {
-      var fstatus = "SEEMS DOWN";
-    } else if (status == "9") {
-      var fstatus = "DOWN";
-    }
-    document.querySelector("#uptime2").innerHTML = fstatus;
-  } catch (error) {
-    document.querySelector("#uptime2").innerHTML = "RATE LIMIT. TRYING AGAIN IN 10s";
-    console.log("Uptimerobot error. Trying again: ")
-    setTimeout(function(){checkServer();}, 0 )
-  }
-}
-
-window.addEventListener("load", function() {
-  setTimeout(function(){checkServer();}, 0 )
-});
