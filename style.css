@@ -234,3 +234,7 @@ body, button {font-family: Lexend Deca; color: #666;}
   background: white;
   transition: background 1s;
 }
+
+h3 a {
+  color: #ff4757;
+}
