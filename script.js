@@ -1,4 +1,15 @@
-BASE_URL = "localhost:8080"
+BASE_URL = "http://localhost:8080"
+
+serverURL = document.getElementById("serverURL")
+
+serverURLStorageName = "serverURL"
+serverURL.textContent = localStorage.getItem(serverURLStorageName) || BASE_URL
+
+serverURL.onchange = (a)=> {
+  val = a.target.value.replace(/\/+$/, "")
+  localStorage.setItem(serverURLStorageName, val)
+}
+
 
 document.getElementById("crop").onclick = function () {
   cropImage();
@@ -89,7 +100,7 @@ function downloadThing() {
 
   var fd = new FormData();
 
-  fetch(BASE_URL + "/get_uuid")
+  fetch(localStorage.getItem(serverURLStorageName) + "/get_uuid")
     .then((e) => e.text())
     .then((e) => {
       uuid = e;
@@ -124,7 +135,7 @@ function downloadThing() {
                     "Doing magic... Give it a minute or two.";
                   console.log("100% hit. Starting EventSource");
                   evtSource = new EventSource(
-                    BASE_URL + "/log?pogid=" +
+                    localStorage.getItem(serverURLStorageName) + "/log?pogid=" +
                       uuid,
                     { withCredentials: true }
                   );
@@ -176,7 +187,7 @@ function downloadThing() {
         },
         type: "POST",
         url:
-          BASE_URL + "/download?url=" +
+          localStorage.getItem(serverURLStorageName) + "/download?url=" +
           window.url +
           "&author=" +
           finalartist +
@@ -364,7 +375,7 @@ function onGo() {
     return;
   }
 
-  fetch("https://kur0-yt-api.deno.dev/" + videoId) //proxy that gets data from yt api
+  fetch("https://kur0-yt-api.kur0.deno.net/" + videoId) //proxy that gets data from yt api
     .then((response) => response.json())
     .then((json) => {
       console.log("parsed json", json); // access json.body here
@@ -380,7 +391,7 @@ function onGo() {
         setElemImg(loadingImg, false)   
       }
       
-      fetch("https://kur0-free-cors.deno.dev/?" + final_url)
+      fetch(final_url)
         .then((e) => e.blob())
         .then((blob) => blobToBase64(blob))
         .then((b64Url) => setElemImg(b64Url))
@@ -403,7 +414,7 @@ document.getElementById("update-ytdlp").onclick = function () {
   document.getElementById("update-ytdlp").disabled = true;
   document.querySelector("#ytdlp-log").innerHTML = "";
   var evtSource = new EventSource(
-    BASE_URL + "/update-yt-dlp"
+    localStorage.getItem(serverURLStorageName) + "/update-yt-dlp"
   );  
   evtSource.onmessage = function (e) {
     if (e.data == "END") {
