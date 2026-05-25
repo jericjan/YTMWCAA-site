@@ -1,3 +1,5 @@
+BASE_URL = "localhost:8080"
+
 document.getElementById("crop").onclick = function () {
   cropImage();
 };
@@ -87,7 +89,7 @@ function downloadThing() {
 
   var fd = new FormData();
 
-  fetch("https://yt2mp3-albumart.jericjanjan.repl.co/get_uuid")
+  fetch(BASE_URL + "/get_uuid")
     .then((e) => e.text())
     .then((e) => {
       uuid = e;
@@ -122,7 +124,7 @@ function downloadThing() {
                     "Doing magic... Give it a minute or two.";
                   console.log("100% hit. Starting EventSource");
                   evtSource = new EventSource(
-                    "https://yt2mp3-albumart.jericjanjan.repl.co/log?pogid=" +
+                    BASE_URL + "/log?pogid=" +
                       uuid,
                     { withCredentials: true }
                   );
@@ -174,7 +176,7 @@ function downloadThing() {
         },
         type: "POST",
         url:
-          "https://yt2mp3-albumart.jericjanjan.repl.co/download?url=" +
+          BASE_URL + "/download?url=" +
           window.url +
           "&author=" +
           finalartist +
@@ -401,7 +403,7 @@ document.getElementById("update-ytdlp").onclick = function () {
   document.getElementById("update-ytdlp").disabled = true;
   document.querySelector("#ytdlp-log").innerHTML = "";
   var evtSource = new EventSource(
-    "https://yt2mp3-albumart.jericjanjan.repl.co/update-yt-dlp"
+    BASE_URL + "/update-yt-dlp"
   );  
   evtSource.onmessage = function (e) {
     if (e.data == "END") {
