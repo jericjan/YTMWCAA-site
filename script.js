@@ -5,6 +5,10 @@ serverURL = document.getElementById("serverURL")
 serverURLStorageName = "serverURL"
 serverURL.textContent = localStorage.getItem(serverURLStorageName) || BASE_URL
 
+if (!localStorage.getItem(serverURLStorageName)) {
+  localStorage.setItem(BASE_URL)
+}
+
 serverURL.onchange = (a)=> {
   val = a.target.value.replace(/\/+$/, "")
   localStorage.setItem(serverURLStorageName, val)
